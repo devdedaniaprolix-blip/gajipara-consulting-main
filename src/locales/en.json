@@ -1,0 +1,61 @@
+{
+  "home": "Home",
+  "services": "Services",
+  "development": "Development",
+  "company": "Company",
+  "aboutUs": "About Us",
+  "offshoring": "Offshoring",
+  "cvDownload": "CV Download",
+
+  "heroTitle1": "Intelligent Craftmanship",
+  "heroTitle2": "Craftmanship",
+
+  "heroPoint1": "Quality and sustainable deliverables",
+  "heroPoint2": "Punctuality and Reliability stays in foreground",
+  "heroPoint3": "Bridging customer fulfillment and IT Landscape",
+
+  "english": "English",
+  "german": "Deutsch",
+
+  "offshoringTitle": "Offshoring Model",
+
+  "offshoringDesc": "Is your company facing resource issue? Qualified resource in SAP area is difficult to acquire and thereby we support you with offshore model. Our resource can be integrated into your company in the SAP field to help you.",
+
+  "offshoringFeature1": "Offshoring Resources",
+  "offshoringFeature2": "Offshore Support",
+  "offshoringFeature3": "Diverse Pricing Model",
+
+  "contactUs": "Contact Us",
+  "cvTitle": "CV Download",
+"cvName": "Your name",
+"cvEmail": "Email Address",
+"cvPhone": "Telephone Number",
+"cvMessage": "Write message....",
+"cvPolicy": "Our",
+"cvDataProtection": "Data Protection",
+"cvPolicyEnd": "policy applies.",
+"cvDownloadBtn": "Download",
+
+"offer":"Offer",
+"footerCompany": "Company",
+"footerLegal": "Legal",
+"footerQuickLinks": "Quick Links",
+"footerContact": "Contact",
+
+"footerAbout": "About Us",
+"footerOffshoring": "Offshoring",
+"footerPartners": "Partners",
+
+"footerAddress": "Address",
+"footerImprint": "Imprint",
+"footerDataProtection": "Data Protection",
+
+"footerSapEwm": "SAP EWM",
+"footerBlogs": "Blogs",
+
+"chatWhatsapp": "Chat On WhatsApp",
+
+"copyright": "Copyright ©2026 Gajipara Consulting. All rights reserved.",
+"readmore":"Read More",
+"whatsApp_Chat":"Chat on WhatsApp"
+}

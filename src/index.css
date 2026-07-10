@@ -1,0 +1,46 @@
+
+@import "./App.css";
+@import "tailwindcss";
+
+
+
+.bn-editor {
+  background: white !important;
+  color: black !important;
+}
+
+.bn-container {
+  background: white !important;
+}
+
+.bn-root {
+  background: white !important;
+}
+.service-title {
+  display: inline;
+  font-family: var(--font-title);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.service-title span {
+  color: #002F46;
+
+  background-image: linear-gradient(#f97316, #f97316);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+
+  /* Initially only underline */
+  background-size: 100% 6px;
+
+  transition: background-size 0.35s ease;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+
+  padding: 0 2px;
+}
+
+.service-title:hover span {
+  /* Highlight each wrapped line separately */
+  background-size: 100% 70%;
+}
