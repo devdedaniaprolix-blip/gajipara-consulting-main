@@ -1,90 +1,30 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../src/assets/logo.png";
 import { useTranslation } from "react-i18next";
-import usFlag from "../assets/en.jpg";
-import deFlag from "../assets/de.jpg";
 import { BASE_URL } from "../config/api";
-
-const STATIC_ROOT_SEGMENTS = new Set([
-  "home",
-  "services",
-  "developments",
-  "company",
-  "blogs",
-]);
-
-const getLocaleFromPath = (pathname) =>
-  pathname.startsWith("/en") ? "en" : "de";
-const getLocalePrefix = (locale) => (locale === "en" ? "/en" : "");
-const buildHomePath = (locale) => (locale === "en" ? "/en/home" : "/");
-
-const buildSlugMaps = (items) => {
-  const docIdBySlug = {};
-  const slugsByDocId = {};
-
-  items.forEach((item) => {
-    if (!item?.documentId || !item?.slug || !item?.locale) return;
-
-    slugsByDocId[item.documentId] = {
-      ...(slugsByDocId[item.documentId] || {}),
-      [item.locale]: item.slug,
-    };
-    docIdBySlug[item.slug] = item.documentId;
-
-    (item.localizations || []).forEach((loc) => {
-      if (!loc?.locale || !loc?.slug) return;
-      slugsByDocId[item.documentId][loc.locale] = loc.slug;
-      docIdBySlug[loc.slug] = item.documentId;
-    });
-  });
-
-  return { docIdBySlug, slugsByDocId };
-};
-
-function HeaderDropdown({
-  label,
-  to,
-  children,
-  align = "center",
-  width = "200px",
-}) {
-  return (
-    <div className="relative group">
-      <Link
-        to={to}
-        className="flex items-center gap-1 font-semibold text-[16px]
-                   text-(--header-menu-txt-color-first)
-                   hover:text-(--header-menu-dropdown-item-txt-color-hover)
-                   transition font-title cursor-pointer"
-      >
-        {label}
-        <span className="text-(--orange) text-sm transition-transform duration-300 group-hover:rotate-90 inline-block">
-          <i className="fa-solid fa-angle-right"></i>
-        </span>
-      </Link>
-
-      <div
-        className={`
-          absolute top-full mt-4
-          ${align === "center" ? "left-1/2 -translate-x-1/2" : "right-0"}
-          bg-white rounded-2xl shadow-xl py-6 px-5 space-y-5
-          opacity-0 invisible translate-y-3
-          group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
-          transition-all duration-300
-        `}
-        style={{ width }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
+import { buildSlugMaps, resolveSlugByLocale } from "../utils/slugHelper";
+import {
+  STATIC_ROOT_SEGMENTS,
+  toPrefixedPath,
+  buildHomePath,
+} from "../utils/language";
+import HeaderDropdown from "./HeaderDropdown";
+import MobileDropdown from "./MobileDropdown";
+import LangSwitcher from "./LangSwitcher";
 
 export default function Header() {
-  const [data, setData] = useState({ services: [], developments: [] });
+  const [services, setServices] = useState([]);
+  const [developments, setDevelopments] = useState([]);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scroll, setScroll] = useState({ show: true, lastY: 0 });
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScroll = useRef(0);
+  const [isScrolled, setIsScrolled] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.scrollY > 50;
+    }
+    return false;
+  });
   const [mobileDropdown, setMobileDropdown] = useState(null);
 
   const dropdownRef = useRef(null);
@@ -92,17 +32,11 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const routeLocale = getLocaleFromPath(location.pathname);
-  const localePrefix = getLocalePrefix(routeLocale);
+  const routeLocale = location.pathname.startsWith("/en") ? "en" : "de";
+  const localePrefix = routeLocale === "en" ? "/en" : "";
 
-  const serviceSlugMaps = useMemo(
-    () => buildSlugMaps(data.services),
-    [data.services],
-  );
-  const developmentSlugMaps = useMemo(
-    () => buildSlugMaps(data.developments),
-    [data.developments],
-  );
+  const serviceSlugMaps = buildSlugMaps(services);
+  const developmentSlugMaps = buildSlugMaps(developments);
 
   useEffect(() => {
     const currentI18nLocale = i18n.language.split("-")[0];
@@ -122,10 +56,8 @@ export default function Header() {
         ]);
         const servicesData = await servicesRes.json();
         const devData = await devRes.json();
-        setData({
-          services: servicesData.data || [],
-          developments: devData.data || [],
-        });
+        setServices(servicesData.data || []);
+        setDevelopments(devData.data || []);
       } catch (err) {
         console.error("Header fetch error:", err);
       }
@@ -134,15 +66,14 @@ export default function Header() {
   }, [routeLocale]);
 
   useEffect(() => {
-    const controlHeader = () => {
-      const currentScrollY = window.scrollY;
-      setScroll((prev) => ({
-        show: !(currentScrollY > prev.lastY && currentScrollY > 80),
-        lastY: currentScrollY,
-      }));
+    const handleScroll = () => {
+      const current = window.scrollY;
+      setIsScrolled(current > 50);
+      setShowHeader(!(current > lastScroll.current && current > 80));
+      lastScroll.current = current;
     };
-    window.addEventListener("scroll", controlHeader);
-    return () => window.removeEventListener("scroll", controlHeader);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -152,20 +83,8 @@ export default function Header() {
   const toggleMobileDropdown = (key) =>
     setMobileDropdown((prev) => (prev === key ? null : key));
 
-  const toPrefixedPath = (targetLocale, nakedPath) => {
-    if (targetLocale === "en")
-      return nakedPath === "/" ? "/en/home" : `/en${nakedPath}`;
-    return nakedPath;
-  };
-
-  const resolveSlugByLocale = (slug, targetLocale, maps) => {
-    const docId = maps.docIdBySlug[slug];
-    if (!docId) return slug;
-    return maps.slugsByDocId[docId]?.[targetLocale] || slug;
-  };
-
   const changeLanguage = async (targetLocale) => {
-    const currentLocale = getLocaleFromPath(location.pathname);
+    const currentLocale = location.pathname.startsWith("/en") ? "en" : "de";
     if (targetLocale === currentLocale) return;
 
     const strippedPath = location.pathname.startsWith("/en")
@@ -174,36 +93,40 @@ export default function Header() {
 
     const segments = strippedPath.split("/").filter(Boolean);
 
-    if (segments.length === 0 || segments[0] === "home") {
-      await i18n.changeLanguage(targetLocale);
-      navigate(buildHomePath(targetLocale));
-      return;
-    }
+    await i18n.changeLanguage(targetLocale);
 
-    if (segments[0] === "developments" && segments[1]) {
+    const goToHome = () => {
+      navigate(buildHomePath(targetLocale));
+    };
+
+    const goToDevelopment = (slug) => {
       const targetSlug = resolveSlugByLocale(
-        segments[1],
+        slug,
         targetLocale,
         developmentSlugMaps,
       );
-      await i18n.changeLanguage(targetLocale);
       navigate(
         targetLocale === "en"
           ? `/en/developments/${targetSlug}`
           : `/developments/${targetSlug}`,
       );
-      return;
+    };
+
+    const goToService = (slug) => {
+      const targetSlug = resolveSlugByLocale(slug, targetLocale, serviceSlugMaps);
+      navigate(targetLocale === "en" ? `/en/${targetSlug}` : `/${targetSlug}`);
+    };
+
+    if (segments.length === 0 || segments[0] === "home") {
+      return goToHome();
+    }
+
+    if (segments[0] === "developments" && segments[1]) {
+      return goToDevelopment(segments[1]);
     }
 
     if (segments[0] === "services" && segments[1]) {
-      const targetSlug = resolveSlugByLocale(
-        segments[1],
-        targetLocale,
-        serviceSlugMaps,
-      );
-      await i18n.changeLanguage(targetLocale);
-      navigate(targetLocale === "en" ? `/en/${targetSlug}` : `/${targetSlug}`);
-      return;
+      return goToService(segments[1]);
     }
 
     if (
@@ -211,120 +134,75 @@ export default function Header() {
       !STATIC_ROOT_SEGMENTS.has(segments[0]) &&
       segments[0] !== "en"
     ) {
-      const targetSlug = resolveSlugByLocale(
-        segments[0],
-        targetLocale,
-        serviceSlugMaps,
-      );
-      await i18n.changeLanguage(targetLocale);
-      navigate(targetLocale === "en" ? `/en/${targetSlug}` : `/${targetSlug}`);
-      return;
+      return goToService(segments[0]);
     }
 
-    await i18n.changeLanguage(targetLocale);
     navigate(toPrefixedPath(targetLocale, strippedPath));
   };
 
-  const LangSwitcher = ({ mobile = false }) => {
-    const [open, setOpen] = useState(false);
+  const companyLinks = [
+    {
+      label: t("aboutUs"),
+      path: "#about",
+    },
+    {
+      label: t("offshoring"),
+      path: "#offshoring",
+    },
+    {
+      label: t("cvDownload"),
+      path: "#cv",
+    },
+  ];
 
-    if (mobile) {
-      return (
-        <div className="mt-8">
-          <button
-            onClick={() => setOpen(!open)}
-            className="w-full flex justify-between items-center text-[20px] font-semibold"
-          >
-            {/* Left Side (Flag + Language) */}
-            <div className="flex items-center gap-3">
-              <img
-                src={routeLocale === "en" ? usFlag : deFlag}
-                alt="flag"
-                className="w-6 h-4 object-cover"
-              />
-              <span>{routeLocale === "en" ? "English" : "Deutsch"}</span>
-            </div>
+  const serviceItems = services.map((service) => ({
+    to: `${localePrefix}/${service.slug}`,
+    label: service.title,
+    className: "font-desc",
+  }));
 
-            {/* Right Side (+ / - icon) */}
-            <span className="text-(--orange) text-3xl leading-none">
-              {open ? "−" : "+"}
-            </span>
-          </button>
+  const devItems = developments.map((dev) => ({
+    to: `${localePrefix}/developments/${dev.slug}`,
+    label: dev.title,
+  }));
 
-          {open && (
-            <div className="mt-4 space-y-4 pl-2 text-[18px]">
-              <button
-                onClick={() => {
-                  changeLanguage("en");
-                  setMobileOpen(false);
-                }}
-                className="flex items-center gap-3"
-              >
-                <img src={usFlag} alt="US" className="w-6 h-4 object-cover" />
-                English
-              </button>
+  const companyItems = companyLinks.map((link) => ({
+    to: `${localePrefix}/company${link.path}`,
+    label: link.label,
+  }));
 
-              <button
-                onClick={() => {
-                  changeLanguage("de");
-                  setMobileOpen(false);
-                }}
-                className="flex items-center gap-3"
-              >
-                <img src={deFlag} alt="DE" className="w-6 h-4 object-cover" />
-                Deutsch
-              </button>
-            </div>
-          )}
-        </div>
-      );
-    }
+  const isBlogDetailsPage = /^\/(en\/)?blogs\/[^/]+$/.test(location.pathname);
 
-    return (
-      <div className="relative group">
-        <button className="flex items-center gap-2 font-medium hover:text-(--orange) transition  cursor-pointer">
-          <img
-            src={routeLocale === "en" ? usFlag : deFlag}
-            alt="flag"
-            className="w-6 h-4 object-cover"
-          />
-          {routeLocale === "en" ? "English" : "Deutsch"}
-          <span className="text-(--orange) text-sm transition-transform duration-300 group-hover:rotate-90 inline-block">
-            <i className="fa-solid fa-angle-right"></i>
-          </span>
-        </button>
+  // Background and border classes
+  let bgClass = "";
+  let borderClass = "";
+  let shadowClass = "";
 
-        <div className="absolute right-0 mt-3 w-44 bg-[#ffffff] rounded-xl shadow-xl py-3 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300">
-          <button
-            onClick={() => changeLanguage("en")}
-            className="flex items-center gap-3 px-4 py-2 w-full hover:text-(--orange) transition  cursor-pointer"
-          >
-            <img src={usFlag} alt="US" className="w-6 h-4 object-cover" />
-            English
-          </button>
+  if (isBlogDetailsPage) {
+    // Mobile is solid black with shadow. Desktop is transparent when scrollY <= 50, solid black when scrollY > 50.
+    bgClass = isScrolled ? "bg-[#000000]" : "bg-[#000000] xl:bg-transparent";
+    borderClass = "border-none";
+    shadowClass = isScrolled ? "shadow-md" : "shadow-md xl:shadow-none";
+  } else {
+    // Mobile is solid white with shadow/border. Desktop is transparent when scrollY <= 50, solid white when scrollY > 50.
+    bgClass = isScrolled ? "bg-white" : "bg-white xl:bg-transparent";
+    borderClass = isScrolled ? "border-b border-gray-200" : "border-b border-gray-200 xl:border-b-0";
+    shadowClass = "shadow-sm";
+  }
 
-          <button
-            onClick={() => changeLanguage("de")}
-            className="flex items-center gap-3 px-4 py-2 w-full hover:text-(--orange) transition  cursor-pointer"
-          >
-            <img src={deFlag} alt="DE" className="w-6 h-4 object-cover" />
-            Deutsch
-          </button>
-        </div>
-      </div>
-    );
-  };
+  const textClass = isBlogDetailsPage ? "text-white" : "text-(--header-menu-txt-color-first)";
+  const mobileMenuBgClass = isBlogDetailsPage ? "bg-[#000000] text-white" : "bg-white text-black";
 
   return (
     <header
       className={`
-        fixed top-0 left-0 w-full bg-white border-b border-gray-200
-        shadow-sm z-50 transition-transform duration-300
-        ${scroll.show ? "translate-y-0" : "-translate-y-full"}
+        fixed top-0 left-0 w-full z-50 transition-all duration-300
+        ${showHeader ? "translate-y-0" : "-translate-y-full"}
+        ${bgClass} ${borderClass} ${shadowClass}
       `}
     >
       <div
-        className="max-w-[1650px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between"
+        className="max-w-[1650px] mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between py-[27px]"
         ref={dropdownRef}
       >
         <Link to={buildHomePath(routeLocale)}>
@@ -332,10 +210,10 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden xl:flex items-center gap-10 font-medium text-[16px] text-(--header-menu-txt-color-first)">
+        <nav className={`hidden xl:flex items-center gap-10 font-medium text-[16px] ${textClass}`}>
           <Link
             to={buildHomePath(routeLocale)}
-            className="text-(--header-menu-txt-color-first) font-semibold text-[16px] hover:text-(--header-menu-dropdown-item-txt-color-hover) cursor-pointer font-title"
+            className={`font-semibold text-[16px] hover:text-(--header-menu-dropdown-item-txt-color-hover) cursor-pointer font-title transition-colors duration-300 ${textClass}`}
           >
             {t("home")}
           </Link>
@@ -343,8 +221,9 @@ export default function Header() {
           <HeaderDropdown
             label={t("services")}
             to={`${localePrefix}/services`}
+            textColorClass={textClass}
           >
-            {data.services.map((service) => (
+            {services.map((service) => (
               <Link
                 key={service.id}
                 to={`${localePrefix}/${service.slug}`}
@@ -358,8 +237,9 @@ export default function Header() {
           <HeaderDropdown
             label={t("development")}
             to={`${localePrefix}/developments`}
+            textColorClass={textClass}
           >
-            {data.developments.map((dev) => (
+            {developments.map((dev) => (
               <Link
                 key={dev.id}
                 to={`${localePrefix}/developments/${dev.slug}`}
@@ -374,33 +254,29 @@ export default function Header() {
             label={t("company")}
             to={`${localePrefix}/company`}
             width="200px"
+            textColorClass={textClass}
           >
-            <Link
-              to={`${localePrefix}/company#about`}
-              className="block hover:text-(--orange) transition"
-            >
-              {t("aboutUs")}
-            </Link>
-            <Link
-              to={`${localePrefix}/company#offshoring`}
-              className="block hover:text-(--orange) transition"
-            >
-              {t("offshoring")}
-            </Link>
-            <Link
-              to={`${localePrefix}/company#cv`}
-              className="block hover:text-(--orange) transition"
-            >
-              {t("cvDownload")}
-            </Link>
+            {companyLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={`${localePrefix}/company${link.path}`}
+                className="block hover:text-(--orange) transition"
+              >
+                {link.label}
+              </Link>
+            ))}
           </HeaderDropdown>
 
-          <LangSwitcher />
+          <LangSwitcher
+            routeLocale={routeLocale}
+            changeLanguage={changeLanguage}
+            setMobileOpen={setMobileOpen}
+          />
         </nav>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="xl:hidden text-2xl font-bold"
+          className={`xl:hidden text-2xl font-bold transition-colors duration-300 ${textClass}`}
         >
           {mobileOpen ? "✕" : "☰"}
         </button>
@@ -408,7 +284,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="xl:hidden fixed top:72px left-0 w-full h-screen bg-white px-6 py-8 overflow-y-auto ">
+        <div className={`xl:hidden fixed top-[86px] left-0 w-full h-screen px-6 py-8 overflow-y-auto transition-all duration-300 ${mobileMenuBgClass}`}>
           <Link
             to={buildHomePath(routeLocale)}
             onClick={() => setMobileOpen(false)}
@@ -417,124 +293,41 @@ export default function Header() {
             {t("home")}
           </Link>
 
-          {/* Services */}
-          <div className="mb-8">
-            <div className="flex justify-between items-center gap-4">
-              <Link
-                to={`${localePrefix}/services`}
-                onClick={() => setMobileOpen(false)}
-                className="text-[20px] font-semibold font-title"
-              >
-                {t("services")}
-              </Link>
-              <button
-                onClick={() => toggleMobileDropdown("services")}
-                className="text-(--orange) text-3xl leading-none"
-                aria-label="Toggle services menu"
-              >
-                {mobileDropdown === "services" ? "−" : "+"}
-              </button>
-            </div>
-            {mobileDropdown === "services" && (
-              <div className="mt-4 space-y-4 pl-2 text-[18px]">
-                {data.services.map((service) => (
-                  <Link
-                    key={service.id}
-                    to={`${localePrefix}/${service.slug}`}
-                    onClick={() => setMobileOpen(false)}
-                    className="block font-desc"
-                  >
-                    {service.title}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          <MobileDropdown
+            title={t("services")}
+            to={`${localePrefix}/services`}
+            items={serviceItems}
+            isOpen={mobileDropdown === "services"}
+            onToggle={() => toggleMobileDropdown("services")}
+            setMobileOpen={setMobileOpen}
+          />
 
-          {/* Development */}
-          <div className="mb-8">
-            <div className="flex justify-between items-center gap-4">
-              <Link
-                to={`${localePrefix}/developments`}
-                onClick={() => setMobileOpen(false)}
-                className="text-[20px] font-semibold font-title"
-              >
-                {t("development")}
-              </Link>
-              <button
-                onClick={() => toggleMobileDropdown("development")}
-                className="text-(--orange) text-3xl leading-none"
-                aria-label="Toggle development menu"
-              >
-                {mobileDropdown === "development" ? "−" : "+"}
-              </button>
-            </div>
-            {mobileDropdown === "development" && (
-              <div className="mt-4 space-y-4 pl-2 text-[18px]">
-                {data.developments.map((dev) => (
-                  <Link
-                    key={dev.id}
-                    to={`${localePrefix}/developments/${dev.slug}`}
-                    onClick={() => setMobileOpen(false)}
-                    className="block"
-                  >
-                    {dev.title}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          <MobileDropdown
+            title={t("development")}
+            to={`${localePrefix}/developments`}
+            items={devItems}
+            isOpen={mobileDropdown === "development"}
+            onToggle={() => toggleMobileDropdown("development")}
+            setMobileOpen={setMobileOpen}
+          />
 
-          {/* Company */}
-          <div className="mb-8">
-            <div className="flex justify-between items-center gap-4">
-              <Link
-                to={`${localePrefix}/company`}
-                onClick={() => setMobileOpen(false)}
-                className="text-[20px] font-semibold font-title"
-              >
-                {t("company")}
-              </Link>
-              <button
-                onClick={() => toggleMobileDropdown("company")}
-                className="text-(--orange) text-3xl leading-none"
-                aria-label="Toggle company menu"
-              >
-                {mobileDropdown === "company" ? "−" : "+"}
-              </button>
-            </div>
-            {mobileDropdown === "company" && (
-              <div className="mt-4 space-y-4 pl-2 text-[18px]">
-                <Link
-                  to={`${localePrefix}/company#about`}
-                  onClick={() => setMobileOpen(false)}
-                  className="block"
-                >
-                  {t("aboutUs")}
-                </Link>
-                <Link
-                  to={`${localePrefix}/company#offshoring`}
-                  onClick={() => setMobileOpen(false)}
-                  className="block"
-                >
-                  {t("offshoring")}
-                </Link>
-                <Link
-                  to={`${localePrefix}/company#cv`}
-                  onClick={() => setMobileOpen(false)}
-                  className="block"
-                >
-                  {t("cvDownload")}
-                </Link>
-              </div>
-            )}
-          </div>
+          <MobileDropdown
+            title={t("company")}
+            to={`${localePrefix}/company`}
+            items={companyItems}
+            isOpen={mobileDropdown === "company"}
+            onToggle={() => toggleMobileDropdown("company")}
+            setMobileOpen={setMobileOpen}
+          />
 
-          <LangSwitcher mobile />
+          <LangSwitcher
+            routeLocale={routeLocale}
+            changeLanguage={changeLanguage}
+            setMobileOpen={setMobileOpen}
+            mobile
+          />
         </div>
       )}
-
     </header>
-
   );
 }
