@@ -30,37 +30,32 @@ const ServiceCard = ({ service }) => {
         rounded-[28px]
         overflow-hidden
         border border-gray-100
-        shadow-[0_15px_35px_rgba(0,0,0,0.06)]
+        shadow-[0px_0px_15px_0px_rgba(0,0,0,0.15)]
         transition-all duration-300
-        hover:shadow-[0_20px_45px_rgba(0,0,0,0.12)]
-        hover:-translate-y-1
       "
     >
       {/* Image */}
-        {imageUrl ? (
-          <img
-            src={imageUrl}
-            alt={title}
-            className="
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt={title}
+          className="
         w-full
         h-[250px]
         object-cover
         object-center
         rounded-t-[30px]
-        transition-transform
-        duration-500
-        hover:scale-105
       "
-          />
-        ) : (
-          <div className="w-full h-[250px] bg-gray-200 rounded-t-[30px]" />
-        )}
+        />
+      ) : (
+        <div className="w-full h-[250px] bg-gray-200 rounded-t-[30px]" />
+      )}
 
       {/* Content */}
       <div className="flex flex-col flex-1">
 
         <h3
-          className="p-[20px] text-lg font-title sm:text-xl font-bold"
+          className="p-[15px] text-lg font-title sm:text-xl font-bold"
           style={{ color: "var(--e-global-color-secondary)" }}
         >
           {title}
@@ -70,27 +65,27 @@ const ServiceCard = ({ service }) => {
           {getFullSentences(description)}
         </p>
       </div>
-    
-       {/* Read More */}
-        <Link
-          to={`${localePrefix}/${slug}`}
-          className="
+
+      {/* Read More */}
+      <Link
+        to={`${localePrefix}/${slug}`}
+        className="
             mt-auto
             px-[20px]
-            pb-[15px]
-            text-sm font-semibold
+            pb-[20px]
             inline-flex items-center gap-1
             text-(--orange)
             transition-all duration-300
             hover:gap-2
             font-desc
+            text-[16px]
           "
-        >
-          {t("readmore")}
-          <span className="transition-transform hover:translate-x-1">
-            <i className="fa-solid fa-angle-right"></i>
-          </span>
-        </Link>
+      >
+        {t("readmore")}
+        <span className="text-[10px] font-semibold transition-transform hover:translate-x-1">
+          <i className="fa-solid fa-angle-right text-[10px] font-extrabold"></i>
+        </span>
+      </Link>
 
     </div>
   );

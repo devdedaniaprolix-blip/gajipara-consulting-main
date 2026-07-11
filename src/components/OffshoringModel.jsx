@@ -7,10 +7,10 @@ const OffshoringModel = () => {
 
   return (
     <section className="py-20">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 xl:px-0 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 items-center">
 
         {/* LEFT SIDE */}
-        <div className="w-full max-w-[520px] mx-auto lg:mx-0 text-left">
+        <div className="w-full max-w-[520px] mx-auto text-left">
 
           {/* Heading */}
           

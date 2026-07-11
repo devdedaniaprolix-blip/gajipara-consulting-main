@@ -43,15 +43,14 @@ const DevelopmentsPage = ({ isHome = false }) => {
   const isSingleCard = developments.length === 1;
   return (
     <div
-      className={`${
-        isHome ? "pt-[86px]" : "pt-[200px]"
-      } px-5 sm:px-8 lg:px-12 xl:px-0`}
+      className={`${isHome ? "pt-[86px]" : "pt-[200px]"
+        } px-5 sm:px-8 lg:px-12 xl:px-0`}
     >
 
       <div className="w-full max-w-[1200px] mx-auto">
 
         {/* Title */}
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-7">
           <h2 className="service-title text-[48px] font-semibold">
             <span>{t("development")}</span>
           </h2>
@@ -70,7 +69,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
         {!loading && !error && (
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={24}
+            spaceBetween={15}
             loop={sliderData.length > 3}
             speed={800}
             centeredSlides={isSingleCard}
@@ -82,22 +81,22 @@ const DevelopmentsPage = ({ isHome = false }) => {
             breakpoints={{
               0: {
                 slidesPerView: 1,
-                spaceBetween: 20,
+                spaceBetween: 15,
               },
 
               590: {
                 slidesPerView: 1,
-                spaceBetween: 24,
+                spaceBetween: 15,
               },
 
               1200: {
                 slidesPerView: 3,
-                spaceBetween: 24,
+                spaceBetween: 15,
               },
 
               1440: {
                 slidesPerView: 3,
-                spaceBetween: 32,
+                spaceBetween: 15,
               },
             }}
             className="w-full flex h-auto"
@@ -107,12 +106,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
                 key={development.id}
                 className="!flex justify-center pb-6 mt-[15px]"
               >
-                <div
-                  className={`w-full ${isSingleCard
-                      ? "max-w-[600px] mx-auto"
-                      : "max-w-[600px] p-5"
-                    }`}
-                >
+                <div className="w-full max-w-[380px] mx-auto">
                   <DevelopmentCard development={development} />
                 </div>
               </SwiperSlide>

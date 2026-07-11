@@ -72,14 +72,14 @@ export default function LangSwitcher({
 
   return (
     <div className="relative group py-0">
-      <button className="flex items-center gap-2 font-medium hover:text-(--orange) transition cursor-pointer">
+      <button className="flex items-center font-medium hover:text-(--orange) transition cursor-pointer">
         <img
           src={currentLang.flag}
           alt="flag"
-          className="w-6 h-4 object-cover"
+            className="w-[16px] h-[11px] object-cover mr-2"
         />
         {currentLang.label}
-        <span className="text-(--orange) text-sm transition-transform duration-300 group-hover:rotate-90 inline-block">
+        <span className="text-(--orange) pl-0.5 text-[10px] transition-transform duration-300 group-hover:rotate-90 inline-block">
           <i className="fa-solid fa-angle-right"></i>
         </span>
       </button>

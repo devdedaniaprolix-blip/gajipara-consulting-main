@@ -49,8 +49,8 @@ const AboutPage = () => {
   )}`;
 
   return (
-    <section className="pt-[150px] pb-[80px] bg-[#F6FCFF]">
-      <div className="max-w-[1200px] mx-auto px-5 lg:px-6 flex flex-col lg:flex-row items-center gap-10">
+    <section className="pt-[150px] pb-[80px] bg-[#FAFAFA]">
+      <div className="max-w-[1200px] mx-auto px-5 lg:px-6 flex flex-col lg:flex-row items-center">
 
         {/* IMAGE */}
        <div className="w-full lg:w-1/2 flex justify-center px-[15px]">
@@ -71,15 +71,15 @@ const AboutPage = () => {
         </div>
 
 
-          <h3 className="text-[20px] font-semibold text-(--e-global-color-secondary) mb-3 sm:mb-4 font-title">
+          <h3 className="text-[20px] font-semibold text-(--e-global-color-secondary) mb-2.5 font-title">
             {about.name}
           </h3>
 
-          <p className="text-[#3C3C3C] leading-relaxed mb-5 sm:mb-6 text-[18px] font-desc">
+          <p className="text-[#3C3C3C] leading-relaxed mb-2 text-[18px] font-desc">
             {description}
           </p>
 
-          <div className="mb-6 sm:mb-8">
+          <div className="mb-5">
             <p className="font-bold text-(--e-global-color-secondary) text-[20px] mb-[10px] font-title">
               {locale === "en" ? "Location" : "Standort"}
             </p>
