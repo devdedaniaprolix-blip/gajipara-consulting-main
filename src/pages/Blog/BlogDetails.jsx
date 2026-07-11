@@ -56,18 +56,18 @@ const BlogDetails = () => {
     <>
       {/* HERO */}
       <section
-        className="relative flex min-h-[420] items-center justify-center overflow-hidden bg-cover bg-center mb-[50px] py-16 text-white sm:min-h-115 md:min-h-125 md:py-0"
+        className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-cover bg-center mb-[50px] py-16 text-white sm:min-h-115 md:min-h-125 md:py-0"
         style={{ backgroundImage: `url(${img1})` }}
       >
         <div className="absolute inset-0 bg-black/70"></div>
 
-        <div className="relative z-10 mx-auto w-full text-center">
+        <div className="relative z-10 mx-auto w-full text-center px-4 sm:px-6 lg:px-8">
           <div className="inline-block max-w-full text-center">
-            <h1 className="font-title text-5xl leading-tight font-extrabold text-balance text-[64px] font-title">
+            <h1 className="font-title text-3xl sm:text-4xl md:text-5xl lg:text-[64px] leading-tight font-extrabold text-balance">
               {blog.title}
             </h1>
 
-            <div className="h-2 bg-(--orange) mt-2 w-full"></div>
+            <div className="h-1 sm:h-2 bg-(--orange) mt-2 w-full"></div>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center text-[16px] justify-center gap-x-2 gap-y-1 text-base font-medium font-title">
