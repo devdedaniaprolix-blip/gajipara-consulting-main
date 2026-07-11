@@ -70,9 +70,9 @@ const DevelopmentDetailsPage = () => {
   return (
     <div className="py-16 mt-25">
       <div className="mx-auto w-full max-w-[562px] px-[15px] lg:max-w-[1200px] lg:px-8">
-        
+
         {/* Title */}
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-10">
           <h2 className="service-title text-[48px] font-semibold">
             <span>{title}</span>
           </h2>
@@ -80,7 +80,7 @@ const DevelopmentDetailsPage = () => {
 
         {/* Image */}
         {imageUrl && (
-          <div className="mb-10">
+          <div className="mb-6">
             <img
               src={imageUrl}
               alt={title}
@@ -92,32 +92,37 @@ const DevelopmentDetailsPage = () => {
         {/* Content */}
         <div className="container bg-[#F6FCFF] rounded-[32px] p-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.04)] max-w-[1200px]">
           <div className="m-[10px]">
-          <h2 className="text-[22px] font-bold text-(--e-global-color-secondary) mb-5 font-title">
-            {title}
-          </h2>
+            <h2 className="text-[22px] font-bold text-(--e-global-color-secondary) mb-5 font-title">
+              {title}
+            </h2>
 
-          <div className="w-full h-[1px] bg-gray-300 mb-5"></div>
+            <div className="w-full h-[1px] bg-gray-300 mb-5"></div>
 
-          <p className="text-(--e-global-color-text) text-lg leading-relaxed mb-5 font-desc">
-            {description}
-          </p>
+            <p className="text-(--e-global-color-text) text-lg leading-relaxed mb-5 font-desc">
+              {description}
+            </p>
 
-          {lits?.length > 0 && (
-            <>
-              <h3 className="font-semibold text-[18px] text-(--e-global-color-secondary) mb-5 font-title">
-                {t("offer")}
-              </h3>
+            {lits?.length > 0 && (
+              <>
+                <h3 className="font-semibold text-[18px] text-(--e-global-color-secondary) mb-5 font-title">
+                  {t("offer")}
+                </h3>
 
-              <ul className="list-disc pl-6 text-lg space-y-1 text-(--e-global-color-text)">
-                {lits.map((item) => (
-                  <li key={item.id} className="font-desc">
-                    {item.lists}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
+                <div className="inline-block">
+                  <ul className="space-y-3">
+                    {lits.map((item) => (
+                      <li key={item.id} className="flex items-start gap-3">
+                        <span className="mt-2 h-2.5 w-2.5 rounded-full bg-gray-700 shrink-0"></span>
+                        <span className="font-desc text-[15px] sm:text-base lg:text-lg leading-7">
+                          {item.lists}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

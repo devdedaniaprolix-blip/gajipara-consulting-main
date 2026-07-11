@@ -10,7 +10,7 @@ export default function Footer() {
   const buildPath = (path) => `${localePrefix}${path}`;
 
   return (
-    <footer className="w-full mt-20">
+    <footer className="w-full">
 
       <div className="bg-(--blue) text-white pt-16 rounded-tr-[180px]">
 
