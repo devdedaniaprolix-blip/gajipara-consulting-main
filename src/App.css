@@ -29,7 +29,8 @@
   --footer-txt-color: #0C0C0C;
   --footer-bg-color: #e4e5e9;
 
-
+  --blog-post-border-content: 1px solid rgba(0, 0, 0, 0.05);
+  --widget-bg-color: #F5F7F9;
   --blue:#002F46;
   --e-global-color-primary:#DE7731;
   --e-global-color-text:#3D3D3D;

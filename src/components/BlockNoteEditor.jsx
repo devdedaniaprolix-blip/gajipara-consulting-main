@@ -80,7 +80,7 @@ export default function BlockNoteEditor({ value, onChange }) {
         filePanel={true}
         emojiPicker={true}
         onChange={() => onChange(editor.document)}
-        className="min-h-[350px] bg-white rounded-md p-4 text-black"
+        className="min-h-87.5 bg-white rounded-md p-4 text-black"
       />
     </div>
   );
