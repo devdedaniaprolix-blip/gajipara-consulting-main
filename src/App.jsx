@@ -48,7 +48,7 @@ function AppContent() {
 
   return (
     <>
-    <Header/>
+      <Header />
 
       <Routes>
         <Route element={<ContainerLayout />}>
