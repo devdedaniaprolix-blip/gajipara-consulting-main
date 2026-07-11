@@ -46,7 +46,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT IMAGE */}
-            <div className="w-full pt-[16px] flex justify-center w-[600] lg:justify-end">
+            <div className="w-full pt-[16px] flex justify-center w-[600]">
               <img
                 src={img1}
                 alt="Hero"

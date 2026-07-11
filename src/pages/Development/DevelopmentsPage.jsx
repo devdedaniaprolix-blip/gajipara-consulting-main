@@ -47,7 +47,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
         } px-5 sm:px-8 lg:px-12 xl:px-0`}
     >
 
-      <div className="w-full max-w-[1200px] mx-auto">
+      <div className="w-full max-w-[1170px] mx-auto">
 
         {/* Title */}
         <div className="flex justify-center mb-7">

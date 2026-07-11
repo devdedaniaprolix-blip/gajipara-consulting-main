@@ -50,7 +50,7 @@ const AboutPage = () => {
 
   return (
     <section className="pt-[150px] pb-[80px] bg-[#FAFAFA]">
-      <div className="max-w-[1200px] mx-auto px-5 lg:px-6 flex flex-col lg:flex-row items-center">
+      <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center">
 
         {/* IMAGE */}
        <div className="w-full lg:w-1/2 flex justify-center px-[15px]">

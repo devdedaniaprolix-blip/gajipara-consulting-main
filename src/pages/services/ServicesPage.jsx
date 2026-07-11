@@ -55,7 +55,7 @@ const ServicesPage = () => {
 
         {!loading && !error && (
           <motion.div
-            className="max-w-[1200px] mx-auto flex flex-wrap -mx-[15px]"
+            className="max-w-[1200px] mx-auto flex flex-wrap mx-[15px]"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
