@@ -5,8 +5,8 @@ const CvDownload = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="pb-20 pt-20 bg-[#F6FCFF] px-5 sm:px-8 md:px-12 lg:px-6">
-      <div className="w-full max-w-[850px] mx-auto">
+    <section className="pb-20 pt-20 bg-[#F6FCFF]">
+      <div className="w-full max-w-[562px] lg:max-w-[850px] mx-auto px-[25px] lg:px-0">
 
         {/* Heading */}
         <div className="flex justify-center mb-5">
