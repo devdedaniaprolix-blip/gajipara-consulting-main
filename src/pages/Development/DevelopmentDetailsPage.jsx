@@ -69,7 +69,7 @@ const DevelopmentDetailsPage = () => {
 
   return (
     <div className="py-16 mt-25">
-      <div className="max-w-6xl mx-auto">
+      <div className="mx-auto w-full max-w-[562px] px-[15px] lg:max-w-[1200px] lg:px-8">
         
         {/* Title */}
         <div className="flex justify-center mb-5">

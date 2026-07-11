@@ -60,7 +60,7 @@ const ServiceDetailsPage = () => {
 
   return (
     <div className="mt-20 py-12 sm:mt-22 sm:py-14 lg:mt-25 lg:py-16">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[562px] px-[15px] lg:max-w-[1200px] lg:px-8">
 
 
         <div className="flex justify-center mb-5">
