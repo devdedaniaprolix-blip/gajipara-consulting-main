@@ -187,7 +187,7 @@ export default function Header() {
     // Mobile is solid white with shadow/border. Desktop is transparent when scrollY <= 50, solid white when scrollY > 50.
     bgClass = isScrolled ? "bg-white" : "bg-white xl:bg-transparent";
     borderClass = isScrolled ? "border-b border-gray-200" : "border-b border-gray-200 xl:border-b-0";
-    shadowClass = "shadow-sm";
+    shadowClass = "shadow-[1px_1px_14px_#00000017]";
   }
 
   const textClass = isBlogDetailsPage ? "text-white" : "text-(--header-menu-txt-color-first)";
@@ -206,7 +206,7 @@ export default function Header() {
         ref={dropdownRef}
       >
         <Link to={buildHomePath(routeLocale)}>
-          <img src={logo} alt="Logo" className="h-8 w-auto" />
+          <img src={logo} alt="Logo" className="w-auto" />
         </Link>
 
         {/* Desktop Navigation */}

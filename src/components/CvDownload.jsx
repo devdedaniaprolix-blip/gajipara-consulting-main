@@ -6,7 +6,7 @@ const CvDownload = () => {
 
   return (
     <section className="pb-20 pt-20 bg-[#F6FCFF] px-5 sm:px-8 md:px-12 lg:px-6">
-      <div className="w-full max-w-[900px] mx-auto">
+      <div className="w-full max-w-[850px] mx-auto">
 
         {/* Heading */}
         <div className="flex justify-center mb-5">
@@ -16,7 +16,7 @@ const CvDownload = () => {
         </div>
 
         {/* Form */}
-        <form className="mt-10 font-desc w-full max-w-[520px] md:max-w-[560px] lg:max-w-[760px] mx-auto">
+        <form className="mt-10 font-desc w-full mx-auto">
 
           {/* Name */}
           <input

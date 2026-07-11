@@ -12,13 +12,13 @@ export default function HeaderDropdown({
     <div className="relative group">
       <Link
         to={to}
-        className={`flex items-center gap-1 font-semibold text-[16px]
+        className={`flex items-center gap-x-0.5 font-semibold text-[16px]
                    ${textColorClass}
                    hover:text-(--header-menu-dropdown-item-txt-color-hover)
                    transition font-title cursor-pointer`}
       >
         {label}
-        <span className="text-(--orange) text-sm transition-transform duration-300 group-hover:rotate-90 inline-block">
+        <span className="text-(--orange) text-[10px] transition-transform duration-300 group-hover:rotate-90 inline-block">
           <i className="fa-solid fa-angle-right"></i>
         </span>
       </Link>

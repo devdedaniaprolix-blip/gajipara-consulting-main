@@ -13,11 +13,11 @@ export default function Home() {
   return (
     <>
       <section className="flex font-title bg-[#F6FCFF] justify-center items-center pb-[50px]">
-        <div className="w-full max-w-[1200px] mx-auto pt-24 sm:pt-28 lg:pt-[120px] px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1200px] mx-auto pt-24 sm:pt-28 lg:pt-[120px]">
           <div className="relative mx-auto flex flex-col lg:flex-row items-center justify-between max-w-[1200px]">
             {/* LEFT CONTENT */}
-            <div className="w-full max-w-[570px] p-[15px] pt-[16px]">
-              <p className="text-[32px] sm:text-[50px] md:text-[64px] lg:text-[76px] leading-[1.1] font-medium text-(--e-global-color-secondary) mb-[16px]">
+            <div className="w-full max-w-[600px] p-[15px] mb-[16px]">
+              <p className="text-[32px] sm:text-[50px] md:text-[64px] lg:text-[76px] leading-[1.1] font-medium text-(--e-global-color-secondary) mb-[36px]">
                 {t("heroTitle1")}
               </p>
 
@@ -46,7 +46,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT IMAGE */}
-            <div className="w-full pt-[16px] flex justify-center lg:w-[52.5%] lg:justify-end">
+            <div className="w-full pt-[16px] flex justify-center w-[600] lg:justify-end">
               <img
                 src={img1}
                 alt="Hero"

@@ -44,7 +44,7 @@ const ServicesPage = () => {
   return (
     <div className="pt-[150px] font-title">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-center mb-5">
+        <div className="flex p-[10px] justify-center mb-6">
           <h2 className="service-title text-[48px] font-semibold">
             <span>{t("services")}</span>
           </h2>
