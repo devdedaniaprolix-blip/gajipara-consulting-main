@@ -42,8 +42,8 @@ const ServicesPage = () => {
   }, [i18n, routeLocale]);
 
   return (
-    <div className="pt-[150px] font-title">
-      <div className="max-w-7xl mx-auto px-6">
+    <div className="pt-[150px] font-title pb-20">
+      <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto ">
         <div className="flex p-[10px] justify-center mb-6">
           <h2 className="service-title text-[48px] font-semibold">
             <span>{t("services")}</span>
@@ -55,7 +55,7 @@ const ServicesPage = () => {
 
         {!loading && !error && (
           <motion.div
-            className="max-w-[1200px] mx-auto flex flex-wrap -mx-[15px]"
+            className="max-w-[1200px] mx-auto flex flex-wrap px-[15px] lg:px-0"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}

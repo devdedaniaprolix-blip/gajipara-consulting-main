@@ -10,11 +10,11 @@ export default function Footer() {
   const buildPath = (path) => `${localePrefix}${path}`;
 
   return (
-    <footer className="w-full mt-20">
+    <footer className="w-full">
 
       <div className="bg-(--blue) text-white pt-16 rounded-tr-[180px]">
 
-        <div className="max-w-[1200px] mx-auto px-6 max-[1300px]:px-10 max-[768px]:px-6">
+        <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto px-[15px] lg:px-0">
 
           {/* Top Row */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
 
             {/* Social */}
-            <div className="flex gap-4 mt-6 md:mt-0">
+            <div className="flex gap-4 mt-6 lg:mt-0">
               <div className="w-11 h-11 flex items-center justify-center rounded-full border border-white cursor-pointer hover:bg-white hover:text-[#083B4C] transition">
                 <i class="fa-brands fa-xing"></i>
               </div>
@@ -43,7 +43,7 @@ export default function Footer() {
           <div className="border-t border-white/20 mb-12"></div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-16">
 
             {/* Company */}
             <div>

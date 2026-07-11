@@ -59,11 +59,10 @@ const ServiceDetailsPage = () => {
   const pageHeading = PageTitle || title;
 
   return (
-    <div className="mt-20 py-12 sm:mt-22 sm:py-14 lg:mt-25 lg:py-16">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+    <div className="mt-20 pb-20 py-12 sm:mt-22 sm:py-14 lg:mt-25 lg:py-16">
+      <div className="mx-auto w-full max-w-[562px] px-[15px] lg:max-w-[1200px] lg:px-8">
 
-
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-10">
           <h2 className="service-title text-[48px] font-semibold text-center">
             <span>{pageHeading}</span>
           </h2>
@@ -71,7 +70,7 @@ const ServiceDetailsPage = () => {
 
         <div className="mx-auto max-w-[560px] lg:max-w-none">
           {imageUrl && (
-            <div className="mb-4 sm:mb-5 lg:mb-10">
+            <div className="mb-6">
               <img
                 src={imageUrl}
                 alt={title}
@@ -98,13 +97,18 @@ const ServiceDetailsPage = () => {
                     {t("offer")}
                   </h3>
 
-                  <ul className="space-y-3 pl-5 text-[15px] leading-7 text-(--e-global-color-text) marker:text-(--e-global-color-text) sm:text-base lg:text-lg">
-                    {offers.map((item) => (
-                      <li key={item.id} className="font-desc">
-                        {item.lists}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="inline-block">
+                    <ul className="space-y-3">
+                      {offers.map((item) => (
+                        <li key={item.id} className="flex items-start gap-3">
+                          <span className="mt-2 h-2.5 w-2.5 rounded-full bg-gray-700 shrink-0"></span>
+                          <span className="font-desc text-[15px] sm:text-base lg:text-lg leading-7">
+                            {item.lists}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </>
               )}
             </div>

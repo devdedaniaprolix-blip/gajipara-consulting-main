@@ -24,9 +24,8 @@ const Blogs = () => {
   }, [routeLocale]);
 
   return (
-   <section className="pt-20 pb-20 px-5 sm:px-8 lg:px-12 xl:px-0">
-      <div className="max-w-[1200px] mx-auto">
-
+    <section className="pt-20 pb-20">
+      <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto px-[15px] lg:px-0">
         <div className="flex justify-center mb-5">
           <h2 className="service-title text-[48px] font-semibold">
             <span>Blogs</span>
@@ -40,33 +39,33 @@ const Blogs = () => {
               : null;
 
             return (
-             <div className="w-full max-w-[560px] mx-auto lg:max-w-none lg:mx-0 p-[15px]">
-              <div
-                key={blog.documentId}
-                className="bg-white rounded-[30px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition-all duration-300"
-              >
-                {imageUrl && (
-                  <img
-                    src={imageUrl}
-                    alt={blog.title}
-                    className="w-full h-[350px] object-cover rounded-t-[30px]"
-                  />
-                )}
+              <div className="w-full max-w-[560px] mx-auto lg:max-w-none lg:mx-0 p-[15px]">
+                <div
+                  key={blog.documentId}
+                  className="bg-white rounded-[30px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.12)] transition-all duration-300"
+                >
+                  {imageUrl && (
+                    <img
+                      src={imageUrl}
+                      alt={blog.title}
+                      className="w-full h-[350px] object-cover rounded-t-[30px]"
+                    />
+                  )}
 
-                <div className="px-[15px] py-[15px]">
-                  <h2 className="text-[20px] mt-[10px] mb-[5px] leading-[1.3] font-[625] text-(--e-global-color-secondary) font-title mb-6">
-                    {blog.title}
-                  </h2>
-                  <div className="mt-[15px]">
-                  <Link
-                    to={`${localePrefix}/blogs/${blog.documentId}`}
-                    className="text-[16px]  font-medium text-(--e-global-color-primary) hover:underline font-desc"
-                  >
-                    Read More
-                  </Link>
+                  <div className="px-[15px] py-[15px]">
+                    <h2 className="text-[20px] mt-[10px] mb-[5px] leading-[1.3] font-[625] text-(--e-global-color-secondary) font-title mb-6">
+                      {blog.title}
+                    </h2>
+                    <div className="mt-[15px]">
+                      <Link
+                        to={`${localePrefix}/blogs/${blog.documentId}`}
+                        className="text-[16px]  font-medium text-(--e-global-color-primary) hover:underline font-desc"
+                      >
+                        Read More
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             );
           })}

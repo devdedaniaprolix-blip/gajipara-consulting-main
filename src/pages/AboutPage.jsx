@@ -50,10 +50,9 @@ const AboutPage = () => {
 
   return (
     <section className="pt-[150px] pb-[80px] bg-[#FAFAFA]">
-      <div className="max-w-[1200px] mx-auto px-5 lg:px-6 flex flex-col lg:flex-row items-center">
-
+      <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto px-[15px] lg:px-0 flex flex-col lg:flex-row items-center">
         {/* IMAGE */}
-       <div className="w-full lg:w-1/2 flex justify-center px-[15px]">
+        <div className="w-full lg:w-1/2 flex justify-center px-[15px]">
           <img
             src={imageUrl}
             alt={about.name}
@@ -62,13 +61,13 @@ const AboutPage = () => {
         </div>
 
         {/* CONTENT */}
-       <div className="w-full max-w-[620px] lg:max-w-none lg:w-1/2 text-left px-[15px] mt-8 lg:mt-0 mx-auto">
-          
+        <div className="w-full max-w-[620px] lg:max-w-none lg:w-1/2 text-left px-[15px] mt-8 lg:mt-0 mx-auto">
+
           <div className="flex justify-left mb-5">
-          <h2 className="service-title text-[48px] font-semibold">
-            <span>{locale === "en" ? "About Us" : "Über Uns"}</span>
-          </h2>
-        </div>
+            <h2 className="service-title text-[48px] font-semibold">
+              <span>{locale === "en" ? "About Us" : "Über Uns"}</span>
+            </h2>
+          </div>
 
 
           <h3 className="text-[20px] font-semibold text-(--e-global-color-secondary) mb-2.5 font-title">

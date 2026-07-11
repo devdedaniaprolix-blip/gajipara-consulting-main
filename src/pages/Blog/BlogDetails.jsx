@@ -92,7 +92,7 @@ const BlogDetails = () => {
       </section>
 
       {/* CONTENT */}
-      <section className="w-full">
+      <section className="w-full pb-[62px]">
         <div className="mx-auto max-w-[1200px] px-[15px]">
           {/* BLOG IMAGE */}
           {imageUrl && (
@@ -159,7 +159,7 @@ const BlogDetails = () => {
               <hr className="border-0 border-t border-[rgba(0,0,0,0.05)] mt-5 mb-6" />
 
               {/* DESCRIPTION */}
-              <p className="p-2.5 max-w-[820px] text-[17px] leading-8 text-(--global-txt-color) font-desc">
+              <p className="p-2.5 text-[17px] leading-8 text-(--global-txt-color) font-desc">
                 {blog.description}
               </p>
             </div>
