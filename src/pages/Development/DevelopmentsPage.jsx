@@ -106,7 +106,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
                 key={development.id}
                 className="!flex justify-center pb-6 mt-[15px]"
               >
-                <div className="w-full max-w-[380px] mx-auto">
+                <div className="w-full max-w-[532px] lg:max-w-[380px] mx-auto px-[15px] lg:px-0">
                   <DevelopmentCard development={development} />
                 </div>
               </SwiperSlide>
