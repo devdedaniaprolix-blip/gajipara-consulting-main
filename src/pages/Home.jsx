@@ -59,7 +59,7 @@ export default function Home() {
       <div className="mt-[-69px]">
         <ServicesPage />
       </div>
-      <div className="bg-[#F6FCFF] mt-[69px] pb-[80px] rounded-tr-[300px]">
+      <div className="bg-[#F6FCFF] rounded-tr-[300px]">
         <DevelopmentsPage isHome={true} />
       </div>
       <div className="">

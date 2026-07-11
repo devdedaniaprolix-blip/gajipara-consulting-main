@@ -42,7 +42,7 @@ const ServicesPage = () => {
   }, [i18n, routeLocale]);
 
   return (
-    <div className="pt-[150px] font-title">
+    <div className="pt-[150px] font-title pb-20">
       <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto ">
         <div className="flex p-[10px] justify-center mb-6">
           <h2 className="service-title text-[48px] font-semibold">
