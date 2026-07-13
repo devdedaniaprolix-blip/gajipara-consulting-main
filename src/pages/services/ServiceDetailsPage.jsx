@@ -54,7 +54,7 @@ const ServiceDetailsPage = () => {
     return <p className="text-center py-20 text-lg font-semibold">Not found</p>;
   }
 
-  const { title, description, image, offers, PageTitle , offerTitle } = service;
+  const { title, description, image, offers, PageTitle, offerTitle } = service;
   const imageUrl = image?.url ? `${BASE_URL}${image.url}` : null;
   const pageHeading = PageTitle || title;
 
@@ -85,7 +85,7 @@ const ServiceDetailsPage = () => {
                 {title}
               </h2>
 
-              <div className="mb-6 h-px w-full bg-gray-300 lg:mb-6"></div>
+              <div className="mb-6 w-full border-t border-[#D6D6D6] lg:mb-6"></div>
 
               <p className="mb-6 text-[15px] leading-8 text-(--e-global-color-text) font-desc sm:text-base lg:text-lg">
                 {description}

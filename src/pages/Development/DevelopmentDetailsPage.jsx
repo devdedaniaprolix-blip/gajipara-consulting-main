@@ -61,7 +61,7 @@ const DevelopmentDetailsPage = () => {
       </p>
     );
 
-  const { title, description, image, lits , offerTitle} = development;
+  const { title, description, image, lits, offerTitle } = development;
 
   const imageUrl = image?.url
     ? `${BASE_URL}${image.url}`
@@ -96,7 +96,7 @@ const DevelopmentDetailsPage = () => {
               {title}
             </h2>
 
-            <div className="w-full h-[1px] bg-gray-300 mb-5"></div>
+            <div className="mb-6 w-full border-t border-[#D6D6D6] lg:mb-6"></div>
 
             <p className="text-(--e-global-color-text) text-lg leading-relaxed mb-5 font-desc">
               {description}

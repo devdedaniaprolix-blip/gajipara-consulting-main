@@ -13,6 +13,7 @@ import Blogs from "./pages/Blog/Blogs";
 import BlogDetails from "./pages/Blog/BlogDetails";
 import { Outlet } from "react-router-dom";
 import Address from "./pages/Address";
+import DataProtection from "./pages/DataProtection";
 import ViewArticle from "./pages/Article/ViewArticle";
 import CreateArticle from "./pages/Article/CreateArticle";
 import EditArticle from "./pages/Article/EditArticle";
@@ -77,6 +78,8 @@ function AppContent() {
           <Route path="/en/imprint" element={<Address />} />
           <Route path="/address" element={<Address />} />
           <Route path="/en/address" element={<Address />} />
+          <Route path="/data-protection" element={<DataProtection />} />
+          <Route path="/en/data-protection" element={<DataProtection />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/en/blogs" element={<Blogs />} />
         </Route>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link ,useParams, useNavigate, useLocation } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import img1 from "../../assets/img_offshoring.jpg";
 import { BASE_URL } from "../../config/api";
 const getLocaleFromPath = (pathname) =>
@@ -156,7 +156,7 @@ const BlogDetails = () => {
               </div>
 
               {/* Divider */}
-              <hr className="border-0 border-t border-[rgba(0,0,0,0.05)] mt-5 mb-6" />
+              <hr className="border-0 border-t border-[#D6D6D6] mt-5 mb-6" />
 
               {/* DESCRIPTION */}
               <p className="p-2.5 text-[17px] leading-8 text-(--global-txt-color) font-desc">
