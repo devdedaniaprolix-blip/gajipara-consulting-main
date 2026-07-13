@@ -26,7 +26,6 @@ export default function Home() {
           `${BASE_URL}/api/homes?populate=*&locale=${locale}`
         );
         const data = await res.json();
-        console.log(data);
         setHomeData(data.data?.[0] || null);
       } catch (err) {
         console.error("Home fetch error:", err);
