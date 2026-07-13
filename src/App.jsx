@@ -12,6 +12,7 @@ import Company from "./pages/Company";
 import Blogs from "./pages/Blog/Blogs";
 import BlogDetails from "./pages/Blog/BlogDetails";
 import { Outlet } from "react-router-dom";
+import Address from "./pages/Address";
 import ViewArticle from "./pages/Article/ViewArticle";
 import CreateArticle from "./pages/Article/CreateArticle";
 import EditArticle from "./pages/Article/EditArticle";
@@ -72,6 +73,10 @@ function AppContent() {
           <Route path="/en/developments/:slug" element={<DevelopmentDetailsPage />} />
           <Route path="/company" element={<Company />} />
           <Route path="/en/company" element={<Company />} />
+          <Route path="/imprint" element={<Address />} />
+          <Route path="/en/imprint" element={<Address />} />
+          <Route path="/address" element={<Address />} />
+          <Route path="/en/address" element={<Address />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/en/blogs" element={<Blogs />} />
         </Route>
