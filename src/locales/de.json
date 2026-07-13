@@ -56,6 +56,13 @@
 "chatWhatsapp": "WhatsApp Chat",
 
 "copyright": "Copyright ©2026 Gajipara Consulting. Alle Rechte vorbehalten.",
-"readmore":"Mehn lesen",
-"whatsApp_Chat":"via Whatsapp melden"
+  "readmore":"Mehn lesen",
+  "whatsApp_Chat":"via Whatsapp melden",
+  "pageNotFoundTitle": "404 NICHT GEFUNDEN",
+  "pageNotFoundOoops": "Ooops. ",
+  "pageNotFoundText": "Seite nicht gefunden!",
+  "pageNotFoundLine1": "Die Seite, nach der Sie suchen, existiert nicht.",
+  "pageNotFoundLine2": "Es sieht so aus, als wären Sie am falschen Ort.",
+  "pageNotFoundLine3": "Lassen Sie sich von uns zurückführen!",
+  "pageNotFoundButton": "Zur Startseite"
 }

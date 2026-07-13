@@ -17,6 +17,7 @@ import DataProtection from "./pages/DataProtection";
 import ViewArticle from "./pages/Article/ViewArticle";
 import CreateArticle from "./pages/Article/CreateArticle";
 import EditArticle from "./pages/Article/EditArticle";
+import NotFound from "./pages/NotFound";
 
 function ContainerLayout() {
   return (
@@ -86,6 +87,8 @@ function AppContent() {
 
         <Route path="/blogs/:id" element={<BlogDetails />} />
         <Route path="/en/blogs/:id" element={<BlogDetails />} />
+        {/* Catch-all 404 Route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

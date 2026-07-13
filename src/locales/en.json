@@ -56,6 +56,13 @@
 "chatWhatsapp": "Chat On WhatsApp",
 
 "copyright": "Copyright ©2026 Gajipara Consulting. All rights reserved.",
-"readmore":"Read More",
-"whatsApp_Chat":"Chat on WhatsApp"
+  "readmore":"Read More",
+  "whatsApp_Chat":"Chat on WhatsApp",
+  "pageNotFoundTitle": "404 NOT FOUND",
+  "pageNotFoundOoops": "Ooops. ",
+  "pageNotFoundText": "Page Not Found!",
+  "pageNotFoundLine1": "The page you are looking for doesnt exist.",
+  "pageNotFoundLine2": "Looks like you are in the wrong place.",
+  "pageNotFoundLine3": "Let us guide you back!",
+  "pageNotFoundButton": "Go to homepage"
 }
