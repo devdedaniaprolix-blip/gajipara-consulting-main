@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import img1 from "../assets/img_offshoring.jpg";
-
+import { BASE_URL } from "../config/api";
 const OffshoringModel = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
+  const [offshoring, setOffshoring] = useState(null);
+
+  useEffect(() => {
+    const fetchOffshoring = async () => {
+      try {
+        const routeLocale = i18n.language || "en";
+
+        const response = await fetch(
+          `${BASE_URL}/api/offshoring-models?populate=*&locale=${routeLocale}`
+        );
+
+        const data = await response.json();
+
+        if (data.data.length > 0) {
+          setOffshoring(data.data[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching offshoring model:", error);
+      }
+    };
+
+    fetchOffshoring();
+  }, [i18n.language]);
   return (
     <section className="py-20">
       <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto px-[15px] lg:px-0 grid lg:grid-cols-2 items-center">
@@ -21,7 +43,7 @@ const OffshoringModel = () => {
 
             {/* Paragraph */}
             <p className="mb-5 text-[18px] text-[#3c3c3c] leading-relaxed font-desc">
-              {t("offshoringDesc")}
+              {offshoring?.description}
             </p>
 
             {/* Features Grid */}
@@ -69,7 +91,11 @@ const OffshoringModel = () => {
         {/* RIGHT SIDE IMAGE */}
         <div className="w-full flex justify-center lg:justify-end p-3.5">
           <img
-            src={img1}
+            src={
+              offshoring?.image?.url
+                ? `${BASE_URL}${offshoring.image.url}`
+                : ""
+            }
             alt="Offshoring"
             className="w-full max-w-[560px] lg:max-w-full rounded-[28px] object-cover"
           />
