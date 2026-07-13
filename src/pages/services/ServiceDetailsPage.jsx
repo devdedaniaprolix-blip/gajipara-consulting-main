@@ -2,6 +2,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../config/api";
+import NotFound from "../NotFound";
 
 const ServiceDetailsPage = () => {
   const { slug } = useParams();
@@ -51,10 +52,10 @@ const ServiceDetailsPage = () => {
   }
 
   if (!service) {
-    return <p className="text-center py-20 text-lg font-semibold">Not found</p>;
+    return <NotFound />;
   }
 
-  const { title, description, image, offers, PageTitle , offerTitle } = service;
+  const { title, description, image, offers, PageTitle, offerTitle } = service;
   const imageUrl = image?.url ? `${BASE_URL}${image.url}` : null;
   const pageHeading = PageTitle || title;
 
@@ -85,7 +86,7 @@ const ServiceDetailsPage = () => {
                 {title}
               </h2>
 
-              <div className="mb-6 h-px w-full bg-gray-300 lg:mb-6"></div>
+              <div className="mb-6 w-full border-t border-[#D6D6D6] lg:mb-6"></div>
 
               <p className="mb-6 text-[15px] leading-8 text-(--e-global-color-text) font-desc sm:text-base lg:text-lg">
                 {description}

@@ -1,4 +1,3 @@
-
 @import "./App.css";
 @import "tailwindcss";
 
@@ -16,6 +15,7 @@
 .bn-root {
   background: white !important;
 }
+
 .service-title {
   display: inline;
   font-family: var(--font-title);
@@ -45,10 +45,111 @@
   /* Highlight each wrapped line separately */
   background-size: 100% 100%;
 }
+
 .development-swiper {
   padding-bottom: 60px;
 }
 
 .development-swiper .swiper-pagination {
   bottom: 0 !important;
+}
+ /* This is for the Address CSS */
+.address-content p {
+  font-size: 18px;
+  color: #3c3c3c;
+  padding-bottom: 10px;
+  font-family: var(--font-desc);
+}
+
+.address-content .section {
+  margin-bottom: 20px;
+}
+
+.address-content .heading {
+  text-align: left;
+  color: #002F46;
+  font-weight: 700;
+  line-height: 1.1em;
+  letter-spacing: -0.8px;
+  width: 100%;
+  max-width: 100%;
+  align-self: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-family: var(--font-title);
+}
+
+.address-content .orange {
+  color: #DE7731;
+}
+
+.address-content .heading2 {
+  text-align: left;
+  color: #002F46;
+  font-size: 20px;
+  font-weight: 700;
+  width: 100%;
+  max-width: 100%;
+  align-self: center;
+  margin-bottom: 26px;
+  font-family: var(--font-title);
+}
+.address-content .p2 {
+  font-size: 18px;
+  color: #3c3c3c;
+  padding-bottom: 10px;
+  font-family: var(--font-desc);
+}
+.address-content .orange-link{
+ color: #DE7731;
+ font-size: 18px;
+}
+
+ /* This is for the Data Protection CSS */
+
+.address-content ol,
+.address-content ul {
+  margin: 10px 0;
+  padding-left: 28px;
+}
+
+.address-content ol {
+  list-style: decimal;
+}
+
+.address-content ul {
+  list-style: disc;
+}
+
+.address-content li {
+  color: #3c3c3c;
+  font-size: 18px;
+  font-family: var(--font-desc);
+}
+
+.address-content li::marker {
+  color: #002F46;
+}
+.address-content .heading-ul-li {
+  text-align: left;
+  color: #002F46;
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 100%;
+  align-self: center;
+  margin-bottom: 26px;
+  font-family: var(--font-desc);
+}
+.address-content strong{
+  font-size: 18px;
+  font-family: var(--font-desc);
+   color: #002F46;
+    margin-bottom: 20px;
+}
+.address-content strong-title{
+  font-size: 18px;
+  font-family: var(--font-desc);
+   color: #002F46;
+   margin-bottom: 20px;
 }

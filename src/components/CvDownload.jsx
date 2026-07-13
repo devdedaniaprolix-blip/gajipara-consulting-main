@@ -5,7 +5,7 @@ const CvDownload = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="pb-20 pt-20 bg-[#F6FCFF]">
+    <section id="cv_download" className="pb-20 pt-20 bg-[#F6FCFF]">
       <div className="w-full max-w-[562px] lg:max-w-[850px] mx-auto px-[25px] lg:px-0">
 
         {/* Heading */}

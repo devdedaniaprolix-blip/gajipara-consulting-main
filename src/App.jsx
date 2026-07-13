@@ -12,9 +12,12 @@ import Company from "./pages/Company";
 import Blogs from "./pages/Blog/Blogs";
 import BlogDetails from "./pages/Blog/BlogDetails";
 import { Outlet } from "react-router-dom";
+import Address from "./pages/Address";
+import DataProtection from "./pages/DataProtection";
 import ViewArticle from "./pages/Article/ViewArticle";
 import CreateArticle from "./pages/Article/CreateArticle";
 import EditArticle from "./pages/Article/EditArticle";
+import NotFound from "./pages/NotFound";
 
 function ContainerLayout() {
   return (
@@ -72,12 +75,20 @@ function AppContent() {
           <Route path="/en/developments/:slug" element={<DevelopmentDetailsPage />} />
           <Route path="/company" element={<Company />} />
           <Route path="/en/company" element={<Company />} />
+          <Route path="/imprint" element={<Address />} />
+          <Route path="/en/imprint" element={<Address />} />
+          <Route path="/address" element={<Address />} />
+          <Route path="/en/address" element={<Address />} />
+          <Route path="/data-protection" element={<DataProtection />} />
+          <Route path="/en/data-protection" element={<DataProtection />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/en/blogs" element={<Blogs />} />
         </Route>
 
         <Route path="/blogs/:id" element={<BlogDetails />} />
         <Route path="/en/blogs/:id" element={<BlogDetails />} />
+        {/* Catch-all 404 Route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

@@ -28,7 +28,7 @@ const Blogs = () => {
       <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto px-[15px] lg:px-0">
         <div className="flex justify-center mb-5">
           <h2 className="service-title text-[48px] font-semibold">
-            <span>Blogs</span>
+            <span>Blog</span>
           </h2>
         </div>
 

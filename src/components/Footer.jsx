@@ -14,10 +14,10 @@ export default function Footer() {
 
       <div className="bg-(--blue) text-white pt-16 rounded-tr-[180px]">
 
-        <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto px-[15px] lg:px-0">
+        <div className="w-full max-w-[1200px] mx-auto px-8 md:px-8 xl:px-0">
 
           {/* Top Row */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-10 ">
 
             <div className="text-2xl font-semibold tracking-wide">
               <img
@@ -28,7 +28,7 @@ export default function Footer() {
             </div>
 
             {/* Social */}
-            <div className="flex gap-4 mt-6 lg:mt-0">
+            <div className="flex gap-4 mt-6 md:mt-0">
               <div className="w-11 h-11 flex items-center justify-center rounded-full border border-white cursor-pointer hover:bg-white hover:text-[#083B4C] transition">
                 <i class="fa-brands fa-xing"></i>
               </div>
@@ -40,10 +40,10 @@ export default function Footer() {
 
           </div>
 
-          <div className="border-t border-white/20 mb-12"></div>
+          <div className="border-t border-[#004668] mb-12"></div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 pb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-y-12 gap-x-16 pb-16">
 
             {/* Company */}
             <div>
@@ -118,15 +118,18 @@ export default function Footer() {
                     "_blank"
                   )
                 }
-                className="flex items-center justify-center gap-2 w-full bg-[#41AA36] hover:bg-[#369021] transition text-white font-medium py-3 rounded-full mb-4 font-desc cursor-pointer"
+                className="w-full md:max-w-[330px] flex items-center justify-center gap-2 w-full bg-[#41AA36] hover:bg-[#369021] transition text-white font-medium py-3 rounded-full mb-4 font-desc cursor-pointer"
               >
                 <i className="fa-brands fa-whatsapp"></i>
                 {t("whatsApp_Chat")}
               </button>
 
-              <button className="w-full bg-[#FFFF] text-[#083B4C] font-medium py-3 rounded-full cursor-pointer transition font-desc">
+              <Link
+                to={buildPath("/company/#cv_download")}
+                className="w-full md:max-w-[330px] block text-center bg-[#FFFF] text-[#083B4C] font-medium py-3 rounded-full cursor-pointer transition font-desc"
+              >
                 {t("cvDownload")}
-              </button>
+              </Link>
 
             </div>
 
@@ -135,7 +138,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="w-full bg-gray-200 text-(--blue) text-center py-4 text-sm">
+      <div className="w-full bg-white text-(--blue) text-center py-4 text-sm">
         {t("copyright")}
       </div>
 

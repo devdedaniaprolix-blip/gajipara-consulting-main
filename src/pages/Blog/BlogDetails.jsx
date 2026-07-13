@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link ,useParams, useNavigate, useLocation } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import img1 from "../../assets/img_offshoring.jpg";
 import { BASE_URL } from "../../config/api";
+import NotFound from "../NotFound";
+
 const getLocaleFromPath = (pathname) =>
   pathname.startsWith("/en") ? "en" : "de";
 
@@ -17,16 +19,28 @@ const BlogDetails = () => {
 
   const [blog, setBlog] = useState(null);
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     // fetch current blog with locale
     fetch(`${BASE_URL}/api/blogs/${id}?populate=*&locale=${routeLocale}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Blog not found");
+        }
+        return res.json();
+      })
       .then((data) => {
-        setBlog(data.data);
+        setBlog(data.data || null);
+        setLoading(false);
         window.scrollTo(0, 0);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setBlog(null);
+        setLoading(false);
+      });
 
     // fetch blog list for previous / next
     fetch(
@@ -34,12 +48,14 @@ const BlogDetails = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setBlogs(data.data);
+        setBlogs(data.data || []);
       })
       .catch((err) => console.error(err));
   }, [id, routeLocale]);
 
-  if (!blog) return <div className="text-center py-20">Loading...</div>;
+  if (loading) return <div className="text-center py-20">Loading...</div>;
+
+  if (!blog) return <NotFound />;
 
   const imageUrl = blog.image?.url ? `${BASE_URL}${blog.image.url}` : null;
 
@@ -156,7 +172,7 @@ const BlogDetails = () => {
               </div>
 
               {/* Divider */}
-              <hr className="border-0 border-t border-[rgba(0,0,0,0.05)] mt-5 mb-6" />
+              <hr className="border-0 border-t border-[#D6D6D6] mt-5 mb-6" />
 
               {/* DESCRIPTION */}
               <p className="p-2.5 text-[17px] leading-8 text-(--global-txt-color) font-desc">

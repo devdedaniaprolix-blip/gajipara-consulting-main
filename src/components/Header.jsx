@@ -171,14 +171,26 @@ export default function Header() {
     label: link.label,
   }));
 
+  const [is404, setIs404] = useState(false);
+
+  useEffect(() => {
+    const handleCheck = () => {
+      setIs404(document.body.classList.contains("is-404-page"));
+    };
+    handleCheck();
+    const timer = setTimeout(handleCheck, 50);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
   const isBlogDetailsPage = /^\/(en\/)?blogs\/[^/]+$/.test(location.pathname);
+  const isDarkHeader = isBlogDetailsPage || is404;
 
   // Background and border classes
   let bgClass = "";
   let borderClass = "";
   let shadowClass = "";
 
-  if (isBlogDetailsPage) {
+  if (isDarkHeader) {
     // Mobile is solid black with shadow. Desktop is transparent when scrollY <= 50, solid black when scrollY > 50.
     bgClass = isScrolled ? "bg-[#000000]" : "bg-[#000000] xl:bg-transparent";
     borderClass = "border-none";
@@ -190,8 +202,8 @@ export default function Header() {
     shadowClass = "shadow-[1px_1px_14px_#00000017]";
   }
 
-  const textClass = isBlogDetailsPage ? "text-white" : "text-(--header-menu-txt-color-first)";
-  const mobileMenuBgClass = isBlogDetailsPage ? "bg-[#000000] text-white" : "bg-white text-black";
+  const textClass = isDarkHeader ? "text-white" : "text-(--header-menu-txt-color-first)";
+  const mobileMenuBgClass = isDarkHeader ? "bg-[#000000] text-white" : "bg-white text-black";
 
   return (
     <header

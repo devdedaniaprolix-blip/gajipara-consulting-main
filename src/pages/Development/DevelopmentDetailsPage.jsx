@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../config/api";
+import NotFound from "../NotFound";
 
 const DevelopmentDetailsPage = () => {
   const { slug } = useParams();
@@ -55,13 +56,9 @@ const DevelopmentDetailsPage = () => {
     );
 
   if (!development)
-    return (
-      <p className="text-center py-20 text-lg">
-        {t("notFound")}
-      </p>
-    );
+    return <NotFound />;
 
-  const { title, description, image, lits , offerTitle} = development;
+  const { title, description, image, lits, offerTitle } = development;
 
   const imageUrl = image?.url
     ? `${BASE_URL}${image.url}`
@@ -96,7 +93,7 @@ const DevelopmentDetailsPage = () => {
               {title}
             </h2>
 
-            <div className="w-full h-[1px] bg-gray-300 mb-5"></div>
+            <div className="mb-6 w-full border-t border-[#D6D6D6] lg:mb-6"></div>
 
             <p className="text-(--e-global-color-text) text-lg leading-relaxed mb-5 font-desc">
               {description}
