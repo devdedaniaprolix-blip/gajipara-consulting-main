@@ -110,7 +110,16 @@ export default function Footer() {
             <div>
               <h3 className="font-semibold text-lg mb-6 font-title">{t("footerContact")}</h3>
 
-              <button className="flex items-center justify-center gap-2 w-full bg-[#41AA36] hover:bg-[#369021] transition text-white font-medium py-3 rounded-full mb-4 font-desc cursor-pointer">
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://wa.me/4917634110864?text=" +
+                    encodeURIComponent("hello"),
+                    "_blank"
+                  )
+                }
+                className="flex items-center justify-center gap-2 w-full bg-[#41AA36] hover:bg-[#369021] transition text-white font-medium py-3 rounded-full mb-4 font-desc cursor-pointer"
+              >
                 <i className="fa-brands fa-whatsapp"></i>
                 {t("whatsApp_Chat")}
               </button>

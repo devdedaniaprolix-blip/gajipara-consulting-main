@@ -8,6 +8,9 @@ import { BASE_URL } from "../../config/api";
 
 import "swiper/css";
 
+import {  Pagination } from "swiper/modules";
+import "swiper/css/pagination";
+
 const DevelopmentsPage = ({ isHome = false }) => {
   const { t, i18n } = useTranslation();
 
@@ -41,6 +44,17 @@ const DevelopmentsPage = ({ isHome = false }) => {
     return [...developments, ...developments, ...developments];
   }, [developments]);
   const isSingleCard = developments.length === 1;
+
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <div
       className={`${isHome ? "pt-[86px]" : "pt-[200px]"
@@ -69,7 +83,8 @@ const DevelopmentsPage = ({ isHome = false }) => {
         {!loading && !error && (
           isHome ? (
             <Swiper
-              modules={[Autoplay]}
+              className="development-swiper"
+              modules={[Autoplay, Pagination]}
               spaceBetween={15}
               loop={sliderData.length > 3}
               speed={800}
@@ -78,6 +93,11 @@ const DevelopmentsPage = ({ isHome = false }) => {
                 delay: 2500,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
+              }}
+              pagination={{
+                clickable: true,
+                dynamicBullets: isDesktop,
+                dynamicMainBullets: 2,
               }}
               breakpoints={{
                 0: {
@@ -88,7 +108,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
                   slidesPerView: 1,
                   spaceBetween: 15,
                 },
-                1200: {
+                1024: {
                   slidesPerView: 3,
                   spaceBetween: 15,
                 },
@@ -97,7 +117,6 @@ const DevelopmentsPage = ({ isHome = false }) => {
                   spaceBetween: 15,
                 },
               }}
-              className="w-full flex h-auto"
             >
               {sliderData.map((development) => (
                 <SwiperSlide
