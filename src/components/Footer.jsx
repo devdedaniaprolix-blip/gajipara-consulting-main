@@ -124,9 +124,12 @@ export default function Footer() {
                 {t("whatsApp_Chat")}
               </button>
 
-              <button className="w-full md:max-w-[330px] bg-[#FFFF] text-[#083B4C] font-medium py-3 rounded-full cursor-pointer transition font-desc">
+              <Link
+                to={buildPath("/company/#cv_download")}
+                className="w-full md:max-w-[330px] block text-center bg-[#FFFF] text-[#083B4C] font-medium py-3 rounded-full cursor-pointer transition font-desc"
+              >
                 {t("cvDownload")}
-              </button>
+              </Link>
 
             </div>
 
