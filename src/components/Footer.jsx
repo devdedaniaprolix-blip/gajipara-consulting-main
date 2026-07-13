@@ -29,13 +29,27 @@ export default function Footer() {
 
             {/* Social */}
             <div className="flex gap-4 mt-6 md:mt-0">
-              <div className="w-11 h-11 flex items-center justify-center rounded-full border border-white cursor-pointer hover:bg-white hover:text-[#083B4C] transition">
-                <i class="fa-brands fa-xing"></i>
-              </div>
+              {/* Xing */}
+              <a
+                href="https://www.xing.com/profile/Gopalkrishna_Gajipara"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Xing"
+                className="w-11 h-11 flex items-center justify-center rounded-full border border-white cursor-pointer hover:bg-white hover:text-[#083B4C] transition"
+              >
+                <i className="fa-brands fa-xing"></i>
+              </a>
 
-              <div className="w-11 h-11 flex items-center justify-center rounded-full border border-white cursor-pointer hover:bg-white hover:text-[#083B4C] transition">
-                <i class="fab fa-linkedin-in"></i>
-              </div>
+              {/* LinkedIn */}
+              <a
+                href="https://www.linkedin.com/in/gajipara?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-11 h-11 flex items-center justify-center rounded-full border border-white cursor-pointer hover:bg-white hover:text-[#083B4C] transition"
+              >
+                <i className="fab fa-linkedin-in"></i>
+              </a>
             </div>
 
           </div>
