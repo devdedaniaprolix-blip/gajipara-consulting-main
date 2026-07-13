@@ -61,7 +61,7 @@ const DevelopmentDetailsPage = () => {
       </p>
     );
 
-  const { title, description, image, lits } = development;
+  const { title, description, image, lits , offerTitle} = development;
 
   const imageUrl = image?.url
     ? `${BASE_URL}${image.url}`
@@ -105,7 +105,7 @@ const DevelopmentDetailsPage = () => {
             {lits?.length > 0 && (
               <>
                 <h3 className="font-semibold text-[18px] text-(--e-global-color-secondary) mb-5 font-title">
-                  {t("offer")}
+                  {offerTitle}
                 </h3>
 
                 <div className="inline-block">
