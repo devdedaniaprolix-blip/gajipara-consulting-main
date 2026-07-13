@@ -45,3 +45,10 @@
   /* Highlight each wrapped line separately */
   background-size: 100% 100%;
 }
+.development-swiper {
+  padding-bottom: 60px;
+}
+
+.development-swiper .swiper-pagination {
+  bottom: 0 !important;
+}

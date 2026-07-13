@@ -54,7 +54,7 @@ const ServiceDetailsPage = () => {
     return <p className="text-center py-20 text-lg font-semibold">Not found</p>;
   }
 
-  const { title, description, image, offers, PageTitle } = service;
+  const { title, description, image, offers, PageTitle , offerTitle } = service;
   const imageUrl = image?.url ? `${BASE_URL}${image.url}` : null;
   const pageHeading = PageTitle || title;
 
@@ -94,7 +94,7 @@ const ServiceDetailsPage = () => {
               {offers?.length > 0 && (
                 <>
                   <h3 className="mb-6 text-lg font-bold text-(--e-global-color-secondary) font-title">
-                    {t("offer")}
+                    {offerTitle}
                   </h3>
 
                   <div className="inline-block">

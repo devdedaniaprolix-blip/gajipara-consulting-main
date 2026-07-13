@@ -8,6 +8,9 @@ import { BASE_URL } from "../../config/api";
 
 import "swiper/css";
 
+import {  Pagination } from "swiper/modules";
+import "swiper/css/pagination";
+
 const DevelopmentsPage = ({ isHome = false }) => {
   const { t, i18n } = useTranslation();
 
@@ -41,6 +44,17 @@ const DevelopmentsPage = ({ isHome = false }) => {
     return [...developments, ...developments, ...developments];
   }, [developments]);
   const isSingleCard = developments.length === 1;
+
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth > 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <div
       className={`${isHome ? "pt-[86px]" : "pt-[200px]"
@@ -50,7 +64,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
       <div className="w-full max-w-[1170px] mx-auto">
 
         {/* Title */}
-        <div className="flex justify-center mb-7">
+        <div className="flex justify-center pb-5">
           <h2 className="service-title text-[48px] font-semibold">
             <span>{t("development")}</span>
           </h2>
@@ -67,52 +81,72 @@ const DevelopmentsPage = ({ isHome = false }) => {
         )}
 
         {!loading && !error && (
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={15}
-            loop={sliderData.length > 3}
-            speed={800}
-            centeredSlides={isSingleCard}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            breakpoints={{
-              0: {
-                slidesPerView: 1,
-                spaceBetween: 15,
-              },
-
-              590: {
-                slidesPerView: 1,
-                spaceBetween: 15,
-              },
-
-              1200: {
-                slidesPerView: 3,
-                spaceBetween: 15,
-              },
-
-              1440: {
-                slidesPerView: 3,
-                spaceBetween: 15,
-              },
-            }}
-            className="w-full flex h-auto"
-          >
-            {sliderData.map((development) => (
-              <SwiperSlide
-                key={development.id}
-                className="!flex justify-center pb-6 mt-[15px]"
-              >
-                <div className="w-full max-w-[380px] mx-auto">
-                  <DevelopmentCard development={development} />
+          isHome ? (
+            <Swiper
+              className="development-swiper"
+              modules={[Autoplay, Pagination]}
+              spaceBetween={15}
+              loop={sliderData.length > 3}
+              speed={800}
+              centeredSlides={isSingleCard}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              pagination={{
+                clickable: true,
+                dynamicBullets: isDesktop,
+                dynamicMainBullets: 2,
+              }}
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  spaceBetween: 15,
+                },
+                590: {
+                  slidesPerView: 1,
+                  spaceBetween: 15,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 15,
+                },
+                1440: {
+                  slidesPerView: 3,
+                  spaceBetween: 15,
+                },
+              }}
+            >
+              {sliderData.map((development) => (
+                <SwiperSlide
+                  key={development.id}
+                  className="!flex justify-center pb-6 mt-[15px]"
+                >
+                  <div className="w-full max-w-[532px] lg:max-w-[380px] mx-auto px-[15px] lg:px-0">
+                    <DevelopmentCard development={development} />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="max-w-[1200px] mt-[25px] mx-auto flex flex-wrap px-[15px] lg:px-0">
+              {developments.map((development) => (
+                <div
+                  key={development.id}
+                  className="w-full min-[1025px]:w-1/3 px-[15px] mb-[30px] flex justify-center"
+                >
+                  <div className="w-full max-w-[560px] min-[1025px]:max-w-none">
+                    <DevelopmentCard development={development} />
+                  </div>
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+              ))}
+            </div>
+          )
         )}
+
+
+
       </div>
 
     </div>
