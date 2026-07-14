@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
 import DevelopmentCard from "../../components/DevelopmentCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,6 +14,11 @@ import "swiper/css/pagination";
 
 const DevelopmentsPage = ({ isHome = false }) => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const routeLocale = location.pathname.startsWith("/en") ? "en" : "de";
+  const localePrefix = routeLocale === "en" ? "/en" : "";
 
   const [developments, setDevelopments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,6 +32,11 @@ const DevelopmentsPage = ({ isHome = false }) => {
         const res = await fetch(
           `${BASE_URL}/api/developments?populate=*&sort=order:asc&locale=${i18n.language}`
         );
+
+        if (res.status === 403 || res.status === 400) {
+          navigate(`${localePrefix}/404`, { replace: true });
+          return;
+        }
 
         const data = await res.json();
         setDevelopments(data.data || []);

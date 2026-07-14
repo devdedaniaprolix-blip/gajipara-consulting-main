@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../config/api";
 
@@ -9,6 +9,7 @@ const getLocaleFromPath = (pathname) =>
 const AboutPage = () => {
   const [about, setAbout] = useState(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const locale = getLocaleFromPath(location.pathname);
 
@@ -18,6 +19,12 @@ const AboutPage = () => {
         const res = await fetch(
           `${BASE_URL}/api/abouts?populate=*&locale=${locale}`
         );
+
+        if (res.status === 403 || res.status === 400) {
+          const localePrefix = locale === "en" ? "/en" : "";
+          navigate(`${localePrefix}/404`, { replace: true });
+          return;
+        }
 
         const data = await res.json();
         setAbout(data.data?.[0] || null);

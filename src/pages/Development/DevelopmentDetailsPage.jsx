@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../config/api";
@@ -7,6 +7,11 @@ import NotFound from "../NotFound";
 const DevelopmentDetailsPage = () => {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const routeLocale = location.pathname.startsWith("/en") ? "en" : "de";
+  const localePrefix = routeLocale === "en" ? "/en" : "";
 
   const [development, setDevelopment] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,6 +28,11 @@ const DevelopmentDetailsPage = () => {
         const res = await fetch(
           `${BASE_URL}/api/developments?filters[slug][$eq]=${slug}&populate=*&locale=${i18n.language}`
         );
+
+        if (res.status === 403 || res.status === 400) {
+          navigate(`${localePrefix}/404`, { replace: true });
+          return;
+        }
 
         const data = await res.json();
 

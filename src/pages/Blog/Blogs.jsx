@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../config/api";
 
 const getLocaleFromPath = (pathname) =>
@@ -10,15 +10,22 @@ const getLocalePrefix = (locale) => (locale === "en" ? "/en" : "");
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const routeLocale = getLocaleFromPath(location.pathname);
   const localePrefix = getLocalePrefix(routeLocale);
 
   useEffect(() => {
     fetch(`${BASE_URL}/api/blogs?populate=*&sort=order:asc&locale=${routeLocale}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 403 || res.status === 400) {
+          navigate(`${localePrefix}/404`, { replace: true });
+          return null;
+        }
+        return res.json();
+      })
       .then((data) => {
-        setBlogs(data.data || []);
+        if (data) setBlogs(data.data || []);
       })
       .catch((err) => console.error(err));
   }, [routeLocale]);

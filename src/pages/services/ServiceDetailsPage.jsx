@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../config/api";
@@ -7,12 +7,14 @@ import NotFound from "../NotFound";
 const ServiceDetailsPage = () => {
   const { slug } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const routeLocale = location.pathname.startsWith("/en") ? "en" : "de";
+  const localePrefix = routeLocale === "en" ? "/en" : "";
 
   useEffect(() => {
     if (!slug) return;
@@ -26,6 +28,11 @@ const ServiceDetailsPage = () => {
             slug,
           )}&populate=*&locale=${routeLocale}`,
         );
+
+        if (res.status === 403 || res.status === 400) {
+          navigate(`${localePrefix}/404`, { replace: true });
+          return;
+        }
 
         const data = await res.json();
         setService(data?.data?.[0] || null);
