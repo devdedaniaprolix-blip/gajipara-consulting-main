@@ -71,7 +71,7 @@ const ServiceDetailsPage = () => {
       <div className="mx-auto w-full max-w-[562px] px-[15px] lg:max-w-[1200px] lg:px-8">
 
         <div className="flex justify-center mb-10">
-          <h2 className="service-title text-[48px] font-semibold text-center">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold text-center">
             <span>{pageHeading}</span>
           </h2>
         </div>

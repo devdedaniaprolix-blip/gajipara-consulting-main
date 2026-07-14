@@ -46,7 +46,7 @@ const CvDownload = () => {
 
         {/* Heading */}
         <div className="flex justify-center mb-5">
-          <h2 className="service-title text-[48px] font-semibold">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
             <span>{t("cvTitle")}</span>
           </h2>
         </div>
@@ -71,7 +71,7 @@ const CvDownload = () => {
           />
 
           {/* Email + Phone */}
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-0 lg:gap-y-0 gap-x-0 lg:gap-x-8">
             <input
               type="email"
               name="email"
@@ -131,7 +131,7 @@ const CvDownload = () => {
           </p>
 
           {/* Button */}
-          <div className="flex flex-col items-center pt-8 pb-4">
+          <div className="flex flex-col items-center pt-4 pb-4">
             <button
               type="submit"
               disabled={status.submitting}

@@ -80,7 +80,7 @@ const DevelopmentDetailsPage = () => {
 
         {/* Title */}
         <div className="flex justify-center mb-10">
-          <h2 className="service-title text-[48px] font-semibold">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
             <span>{title}</span>
           </h2>
         </div>

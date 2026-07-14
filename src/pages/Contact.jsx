@@ -96,7 +96,7 @@ const Contact = () => {
       <section className="mx-auto w-full max-w-[562px] px-[15px] pt-[150px] pb-[80px] lg:max-w-[1200px]">
         {/* Page Title */}
         <div className="flex p-[10px] justify-center mb-10">
-          <h2 className="service-title text-[48px] font-semibold">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
             <span>{t("contactTitle")}</span>
           </h2>
         </div>

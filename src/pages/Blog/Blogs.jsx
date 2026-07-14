@@ -31,10 +31,10 @@ const Blogs = () => {
   }, [routeLocale]);
 
   return (
-    <section className="pt-20 pb-20">
+    <section className="pt-38 pb-20">
       <div className="w-full max-w-[562px] lg:max-w-[1200px] mx-auto px-[15px] lg:px-0">
         <div className="flex justify-center mb-5">
-          <h2 className="service-title text-[48px] font-semibold">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
             <span>Blog</span>
           </h2>
         </div>

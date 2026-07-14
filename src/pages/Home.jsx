@@ -97,7 +97,9 @@ export default function Home() {
 
       <OffshoringModel />
       <CvDownload />
-      <Blogs />
+      <div className="mt-[-69px]">
+        <Blogs />
+      </div>
     </>
   );
 }

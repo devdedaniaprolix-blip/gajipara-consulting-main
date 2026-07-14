@@ -68,7 +68,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
   }, []);
   return (
     <div
-      className={`${isHome ? "pt-[86px]" : "pt-[200px]"
+      className={`${isHome ? "pt-[86px]" : "pt-[150px]"
         } px-5 sm:px-8 lg:px-12 xl:px-0 pb-20`}
     >
 
@@ -76,7 +76,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
 
         {/* Title */}
         <div className="flex justify-center pb-5">
-          <h2 className="service-title text-[48px] font-semibold">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
             <span>{t("development")}</span>
           </h2>
         </div>
