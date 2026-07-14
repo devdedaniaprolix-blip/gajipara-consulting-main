@@ -1,8 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useLocation } from "react-router-dom";
 
 const CvDownload = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const localePrefix = location.pathname.startsWith("/en") ? "/en" : "";
 
   return (
     <section id="cv_download" className="pb-20 pt-20 bg-[#F6FCFF]">
@@ -70,9 +73,12 @@ const CvDownload = () => {
           {/* Data Protection */}
           <p className="max-w-[520px] text-[16px] text-[#2f2f2f] leading-7">
             {t("cvPolicy")}{" "}
-            <span className="text-(--orange) font-bold">
+            <Link
+              to={`${localePrefix}/data-protection`}
+              className="text-(--orange) font-bold hover:underline cursor-pointer"
+            >
               {t("cvDataProtection")}
-            </span>{" "}
+            </Link>{" "}
             {t("cvPolicyEnd")}
           </p>
 
