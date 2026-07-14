@@ -39,6 +39,7 @@
   "cvDataProtection": "Data Protection",
   "cvPolicyEnd": "policy applies.",
   "cvDownloadBtn": "Download",
+  "cvErrorMsg": "There was an error trying to send your message. Please try again later.",
   "offer": "Offer",
   "footerCompany": "Company",
   "footerLegal": "Legal",

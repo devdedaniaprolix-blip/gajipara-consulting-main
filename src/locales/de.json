@@ -39,6 +39,7 @@
   "cvDataProtection": "Datenschutz",
   "cvPolicyEnd": "richtlinie gilt.",
   "cvDownloadBtn": "Lebenslauf Herunterladen",
+  "cvErrorMsg": "Es gab einen Fehler beim Versuch, Ihre Nachricht zu senden. Bitte versuchen Sie es später noch einmal.",
   "offer": "Angebot",
   "footerCompany": "Unternehmen",
   "footerLegal": "Rechtliches",
