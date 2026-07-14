@@ -80,7 +80,7 @@ const BlogDetails = () => {
         className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-cover bg-center mb-[50px] py-16 text-white sm:min-h-115 md:min-h-125 md:py-0"
         style={{ backgroundImage: `url(${img1})` }}
       >
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
 
         <div className="relative z-10 mx-auto w-full text-center px-4 sm:px-6 lg:px-8">
           <div className="inline-block max-w-full text-center">
