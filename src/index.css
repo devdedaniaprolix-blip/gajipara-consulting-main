@@ -107,30 +107,81 @@
 
  /* This is for the Data Protection CSS */
 
-.address-content ol,
-.address-content ul {
+.data-protection p {
+  font-size: 18px;
+  color: #3c3c3c;
+  padding-bottom: 10px;
+  font-family: var(--font-desc);
+}
+
+.data-protection .section {
+  margin-bottom: 20px;
+}
+
+.data-protection .heading {
+  text-align: left;
+  color: #002F46;
+  font-weight: 700;
+  line-height: 1.1em;
+  letter-spacing: -0.8px;
+  width: 100%;
+  max-width: 100%;
+  align-self: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-family: var(--font-title);
+}
+
+.data-protection .orange {
+  color: #DE7731;
+}
+
+.data-protection .heading2 {
+  text-align: left;
+  color: #002F46;
+  font-size: 20px;
+  font-weight: 700;
+  width: 100%;
+  max-width: 100%;
+  align-self: center;
+  margin-bottom: 26px;
+  font-family: var(--font-title);
+}
+.data-protection .p2 {
+  font-size: 18px;
+  color: #3c3c3c;
+  padding-bottom: 10px;
+  font-family: var(--font-desc);
+}
+.data-protection .orange-link{
+ color: #DE7731;
+ font-size: 18px;
+}
+
+.data-protection ol,
+.data-protection ul {
   margin: 10px 0;
   padding-left: 28px;
 }
 
-.address-content ol {
+.data-protection ol {
   list-style: decimal;
 }
 
-.address-content ul {
+.data-protection ul {
   list-style: disc;
 }
 
-.address-content li {
+.data-protection li {
   color: #3c3c3c;
   font-size: 18px;
   font-family: var(--font-desc);
 }
 
-.address-content li::marker {
+.data-protection li::marker {
   color: #002F46;
 }
-.address-content .heading-ul-li {
+.data-protection .heading-ul-li {
   text-align: left;
   color: #002F46;
   font-size: 18px;
@@ -141,13 +192,13 @@
   margin-bottom: 26px;
   font-family: var(--font-desc);
 }
-.address-content strong{
+.data-protection strong{
   font-size: 18px;
   font-family: var(--font-desc);
    color: #002F46;
     margin-bottom: 20px;
 }
-.address-content strong-title{
+.data-protection strong-title{
   font-size: 18px;
   font-family: var(--font-desc);
    color: #002F46;

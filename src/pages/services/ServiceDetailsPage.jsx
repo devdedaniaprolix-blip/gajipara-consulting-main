@@ -82,7 +82,7 @@ const ServiceDetailsPage = () => {
               <img
                 src={imageUrl}
                 alt={title}
-                className="h-[200px] w-full rounded-[28px] object-cover sm:h-[250px] md:h-[320px] lg:h-[500px] lg:rounded-3xl lg:shadow-md"
+                className="h-[200px] w-full rounded-[28px] object-cover sm:h-[250px] md:h-[250px] lg:h-[500px] lg:rounded-3xl lg:shadow-md"
               />
             </div>
           )}

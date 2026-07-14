@@ -75,7 +75,7 @@ const DataProtection = () => {
                             </>
                         )}
                         <div
-                            className="address-content text-[#4B4B4B]"
+                            className="data-protection text-[#4B4B4B]"
                             dangerouslySetInnerHTML={{
                                 __html: extractBody(html),
                             }}
