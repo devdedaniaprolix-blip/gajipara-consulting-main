@@ -4,6 +4,8 @@ export const STATIC_ROOT_SEGMENTS = new Set([
   "developments",
   "company",
   "blogs",
+  "kontakt",
+  "contact",
 ]);
 
 export const toPrefixedPath = (targetLocale, nakedPath) => {

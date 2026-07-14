@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useLocation } from "react-router-dom";
 import { BASE_URL } from "../config/api";
 const OffshoringModel = () => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const localePrefix = location.pathname.startsWith("/en") ? "/en" : "";
+  const contactPath = localePrefix ? `${localePrefix}/contact` : "/kontakt";
 
   const [offshoring, setOffshoring] = useState(null);
 
@@ -82,9 +86,12 @@ const OffshoringModel = () => {
             </div>
 
             {/* Button */}
-            <button className="mt-5 bg-(--e-global-color-secondary) hover:bg-(--e-global-color-primary) text-white px-8 py-3 rounded-full text-[16px] font-medium transition-all duration-300 font-title">
+            <Link
+              to={contactPath}
+              className="mt-5 inline-block text-center bg-(--e-global-color-secondary) hover:bg-(--e-global-color-primary) text-white px-8 py-3 rounded-full text-[16px] font-medium transition-all duration-300 font-title cursor-pointer"
+            >
               {t("contactUs")}
-            </button>
+            </Link>
           </div>
         </div>
 
