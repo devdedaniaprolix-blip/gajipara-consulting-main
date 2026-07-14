@@ -21,7 +21,7 @@ const getExcerpt = (text, maxLength = 320) => {
 };
 
 const AuthorBlogs = () => {
-  const { username } = useParams();
+  const { username, categoryName } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -32,14 +32,26 @@ const AuthorBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Format username nicely: e.g. gajipara-admin -> Gajipara Consulting
-  const authorName =
-    username === "gajipara-admin"
-      ? "Gajipara Consulting"
-      : username
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
+  // Check if we are on a category page or author page
+  const isCategory = !!categoryName || location.pathname.includes("/category");
+  const rawValue = isCategory ? categoryName : username;
+
+  // Format display name nicely: e.g. gajipara-admin -> Gajipara Consulting
+  let displayName = "";
+  if (rawValue) {
+    if (rawValue === "gajipara-admin") {
+      displayName = "Gajipara Consulting";
+    } else if (rawValue.toLowerCase() === "uncategorized") {
+      displayName = t("uncategorized", "Uncategorized");
+    } else {
+      displayName = rawValue
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+    }
+  }
+
+  const authorName = isCategory ? "Gajipara Consulting" : displayName;
 
   useEffect(() => {
     setLoading(true);
@@ -79,7 +91,7 @@ const AuthorBlogs = () => {
         <div className="relative z-10 mx-auto w-full text-center px-4 sm:px-6 lg:px-8">
           <div className="inline-block max-w-full text-center">
             <h1 className="font-title text-3xl sm:text-4xl md:text-5xl lg:text-[64px] leading-tight font-bold text-balance">
-              {t("authorTitle", "Author:")} {authorName}
+              {isCategory ? t("categoryTitle", "Category:") : t("authorTitle", "Author:")} {displayName}
             </h1>
 
             <div className="h-1 sm:h-2 bg-(--orange) mt-2 w-full"></div>
@@ -94,9 +106,13 @@ const AuthorBlogs = () => {
             </Link>
 
             <span className="text-gray-300">›</span>
-            <span className="text-white">
-              {t("articlesBy", "Articles by:")} {authorName}
-            </span>
+            {isCategory ? (
+              <span className="text-white">{displayName}</span>
+            ) : (
+              <span className="text-white">
+                {t("articlesBy", "Articles by:")} {displayName}
+              </span>
+            )}
           </div>
         </div>
       </section>

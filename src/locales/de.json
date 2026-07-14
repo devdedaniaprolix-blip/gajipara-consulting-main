@@ -65,5 +65,7 @@
   "pageNotFoundButton": "Zur Startseite",
   "authorTitle": "Autor:",
   "articlesBy": "Artikel von:",
-  "by": "Von"
+  "by": "Von",
+  "categoryTitle": "Kategorie:",
+  "uncategorized": "Nicht kategorisiert"
 }

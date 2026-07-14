@@ -66,5 +66,7 @@
   "pageNotFoundButton": "Go to homepage",
   "authorTitle": "Author:",
   "articlesBy": "Articles by:",
-  "by": "By"
+  "by": "By",
+  "categoryTitle": "Category:",
+  "uncategorized": "Uncategorized"
 }

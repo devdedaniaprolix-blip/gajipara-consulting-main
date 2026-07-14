@@ -90,6 +90,8 @@ function AppContent() {
             <Route path="/en/blogs" element={<Blogs />} />
             <Route path="/author/:username" element={<AuthorBlogs />} />
             <Route path="/en/author/:username" element={<AuthorBlogs />} />
+            <Route path="/category/:categoryName" element={<AuthorBlogs />} />
+            <Route path="/en/category/:categoryName" element={<AuthorBlogs />} />
           </Route>
 
           <Route path="/blogs/:id" element={<BlogDetails />} />

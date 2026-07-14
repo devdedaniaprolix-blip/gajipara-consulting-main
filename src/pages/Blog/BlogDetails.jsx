@@ -102,7 +102,12 @@ const BlogDetails = () => {
             {!blog.categorized && (
               <>
                 <span className="text-gray-300">›</span>
-                <span className="text-(--orange)">Uncategorized</span>
+                <Link
+                  to={`${localePrefix}/category/uncategorized`}
+                  className="text-(--orange) hover:text-(--white) transition-colors"
+                >
+                  Uncategorized
+                </Link>
               </>
             )}
 
@@ -131,7 +136,12 @@ const BlogDetails = () => {
               {/* CATEGORY */}
               {!blog.categorized && (
                 <p className="mb-4 pt-2 pr-3 pb-2 pl-0 text-[14px] font-medium uppercase text-(--orange) font-title">
-                  Uncategorized
+                  <Link
+                    to={`${localePrefix}/category/uncategorized`}
+                    className="hover:underline transition"
+                  >
+                    Uncategorized
+                  </Link>
                 </p>
               )}
 
