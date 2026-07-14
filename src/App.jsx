@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -91,6 +91,15 @@ function AppContent() {
 
           <Route path="/blogs/:id" element={<BlogDetails />} />
           <Route path="/en/blogs/:id" element={<BlogDetails />} />
+
+          {/* Explicit 400, 403, and 404 routes */}
+          <Route path="/400" element={<Navigate to="/404" replace />} />
+          <Route path="/403" element={<Navigate to="/404" replace />} />
+          <Route path="/en/400" element={<Navigate to="/en/404" replace />} />
+          <Route path="/en/403" element={<Navigate to="/en/404" replace />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="/en/404" element={<NotFound />} />
+
           {/* Catch-all 404 Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -26,12 +26,17 @@ const BlogDetails = () => {
     // fetch current blog with locale
     fetch(`${BASE_URL}/api/blogs/${id}?populate=*&locale=${routeLocale}`)
       .then((res) => {
+        if (res.status === 403 || res.status === 400) {
+          navigate(`${localePrefix}/404`, { replace: true });
+          return null;
+        }
         if (!res.ok) {
           throw new Error("Blog not found");
         }
         return res.json();
       })
       .then((data) => {
+        if (!data) return;
         setBlog(data.data || null);
         setLoading(false);
         window.scrollTo(0, 0);

@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../config/api";
 
 const Address = () => {
     const location = useLocation();
+    const navigate = useNavigate();
 
     const [sections, setSections] = useState([]);
     const [pageTitle, setPageTitle] = useState("");
 
     // Detect locale from URL
     const routeLocale = location.pathname.startsWith("/en") ? "en" : "de";
+    const localePrefix = routeLocale === "en" ? "/en" : "";
 
     useEffect(() => {
         fetchAddress();
@@ -28,6 +30,9 @@ const Address = () => {
             setSections(data?.section || []);
         } catch (err) {
             console.error(err);
+            if (err.response && (err.response.status === 403 || err.response.status === 400)) {
+                navigate(`${localePrefix}/404`, { replace: true });
+            }
         }
     };
 

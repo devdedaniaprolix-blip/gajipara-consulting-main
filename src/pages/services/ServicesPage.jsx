@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ServiceCard from "../../components/ServiceCard";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -7,12 +7,14 @@ import { BASE_URL } from "../../config/api";
 
 const ServicesPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const routeLocale = location.pathname.startsWith("/en") ? "en" : "de";
+  const localePrefix = routeLocale === "en" ? "/en" : "";
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -23,6 +25,11 @@ const ServicesPage = () => {
         const res = await fetch(
           `${BASE_URL}/api/services?populate=*&sort=order:asc&locale=${routeLocale}`
         );
+
+        if (res.status === 403 || res.status === 400) {
+          navigate(`${localePrefix}/404`, { replace: true });
+          return;
+        }
 
         const data = await res.json();
         setServices(data.data || []);
