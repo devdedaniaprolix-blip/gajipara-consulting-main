@@ -11,6 +11,7 @@ import DevelopmentsPage from "./pages/Development/DevelopmentsPage";
 import Company from "./pages/Company";
 import Blogs from "./pages/Blog/Blogs";
 import BlogDetails from "./pages/Blog/BlogDetails";
+import AuthorBlogs from "./pages/Blog/AuthorBlogs";
 import { Outlet } from "react-router-dom";
 import Address from "./pages/Address";
 import DataProtection from "./pages/DataProtection";
@@ -87,6 +88,8 @@ function AppContent() {
             <Route path="/en/contact" element={<Contact />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/en/blogs" element={<Blogs />} />
+            <Route path="/author/:username" element={<AuthorBlogs />} />
+            <Route path="/en/author/:username" element={<AuthorBlogs />} />
           </Route>
 
           <Route path="/blogs/:id" element={<BlogDetails />} />

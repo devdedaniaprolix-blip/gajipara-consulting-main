@@ -132,7 +132,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
               {sliderData.map((development) => (
                 <SwiperSlide
                   key={development.id}
-                  className="!flex justify-center pb-6 mt-[15px]"
+                  className="!flex justify-center pb-10 mt-[15px]"
                 >
                   <div className="w-full max-w-[532px] lg:max-w-[380px] mx-auto px-[15px] lg:px-0">
                     <DevelopmentCard development={development} />

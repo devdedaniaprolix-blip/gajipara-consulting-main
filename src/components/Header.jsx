@@ -183,7 +183,8 @@ export default function Header() {
   }, [location.pathname]);
 
   const isBlogDetailsPage = /^\/(en\/)?blogs\/[^/]+$/.test(location.pathname);
-  const isDarkHeader = isBlogDetailsPage || is404;
+  const isauthorPage = /^\/(en\/)?author\/[^/]+$/.test(location.pathname);
+  const isDarkHeader = isBlogDetailsPage || is404 || isauthorPage;
 
   // Background and border classes
   let bgClass = "";

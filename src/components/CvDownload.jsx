@@ -127,7 +127,6 @@ const CvDownload = () => {
             >
               {t("cvDataProtection")}
             </Link>{" "}
-            {t("cvPolicyEnd")}
           </p>
 
           {/* Button */}

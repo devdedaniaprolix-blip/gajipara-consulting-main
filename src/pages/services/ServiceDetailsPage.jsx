@@ -110,7 +110,7 @@ const ServiceDetailsPage = () => {
                       {offers.map((item) => (
                         <li key={item.id} className="flex items-start gap-3">
                           <span className="mt-2 h-2.5 w-2.5 rounded-full bg-gray-700 shrink-0"></span>
-                          <span className="font-desc text-[15px] sm:text-base lg:text-lg leading-7">
+                          <span className="font-desc text-[15px] sm:text-base lg:text-lg leading-7 text-(--e-global-color-text)">
                             {item.lists}
                           </span>
                         </li>

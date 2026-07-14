@@ -153,7 +153,9 @@ const BlogDetails = () => {
                     />
                   </svg>
 
-                  <span className="text-[#3c3c3c] text-[14px]">By gsupperadmin</span>
+                  <span className="text-[#3c3c3c] text-[14px]">
+                    <Link to={`${localePrefix}/author/gajipara-admin`} className="hover:text-(--orange) transition-colors font-medium">By Gajipara Consulting</Link>
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-2 text-[#3c3c3c]">
@@ -180,7 +182,7 @@ const BlogDetails = () => {
               <hr className="border-0 border-t border-[#D6D6D6] mt-5 mb-6" />
 
               {/* DESCRIPTION */}
-              <p className="p-2.5 text-[17px] leading-8 text-(--global-txt-color) font-desc">
+              <p className="p-2.5 text-[17px] leading-8 text-(--e-global-color-text) font-desc">
                 {blog.description}
               </p>
             </div>
