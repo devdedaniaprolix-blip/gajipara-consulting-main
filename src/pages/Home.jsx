@@ -57,14 +57,14 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <i className="fa-solid fa-shield-halved text-[20px] sm:text-[24px] text-(--orange) shrink-0 mt-1"></i>
                   <p className="font-desc text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-normal text-(--e-global-color-text)">
-                    Punctuality and Reliability stays in foreground
+                   {t("heroPoint2")}
                   </p>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <i className="fa-solid fa-user-group text-[20px] sm:text-[24px] text-(--orange) shrink-0 mt-1"></i>
                   <p className="font-desc text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-normal text-(--e-global-color-text)">
-                    Bridging customer fulfillment and IT Landscape
+                    {t("heroPoint3")}
                   </p>
                 </div>
               </div>
@@ -91,13 +91,15 @@ export default function Home() {
       <div className="bg-[#F6FCFF] rounded-tr-[300px]">
         <DevelopmentsPage isHome={true} />
       </div>
-      <div className="">
+      <div className="mt-[-70px]">
         <AboutPage />
       </div>
 
       <OffshoringModel />
       <CvDownload />
-      <Blogs />
+      <div className="mt-[-69px]">
+        <Blogs />
+      </div>
     </>
   );
 }

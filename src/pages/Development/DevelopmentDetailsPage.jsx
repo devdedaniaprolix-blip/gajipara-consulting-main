@@ -80,7 +80,7 @@ const DevelopmentDetailsPage = () => {
 
         {/* Title */}
         <div className="flex justify-center mb-10">
-          <h2 className="service-title text-[48px] font-semibold">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
             <span>{title}</span>
           </h2>
         </div>
@@ -91,7 +91,7 @@ const DevelopmentDetailsPage = () => {
             <img
               src={imageUrl}
               alt={title}
-              className="w-full h-[500px] object-cover rounded-3xl shadow-md"
+              className="w-full h-[250px] lg:h-[500px] object-cover rounded-3xl shadow-md"
             />
           </div>
         )}
@@ -111,16 +111,16 @@ const DevelopmentDetailsPage = () => {
 
             {lits?.length > 0 && (
               <>
-                <h3 className="font-semibold text-[18px] text-(--e-global-color-secondary) mb-5 font-title">
+                <h3 className="font-semibold text-[20px] text-(--e-global-color-secondary) mb-5 font-title">
                   {offerTitle}
                 </h3>
 
                 <div className="inline-block">
-                  <ul className="space-y-3">
+                  <ul className="space-y-1">
                     {lits.map((item) => (
                       <li key={item.id} className="flex items-start gap-3">
                         <span className="mt-2 h-2.5 w-2.5 rounded-full bg-gray-700 shrink-0"></span>
-                        <span className="font-desc text-[15px] sm:text-base lg:text-lg leading-7">
+                        <span className="font-desc text-[18px] text-(--e-global-color-text) ">
                           {item.lists}
                         </span>
                       </li>

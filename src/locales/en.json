@@ -63,5 +63,10 @@
   "pageNotFoundLine1": "The page you are looking for doesnt exist.",
   "pageNotFoundLine2": "Looks like you are in the wrong place.",
   "pageNotFoundLine3": "Let us guide you back!",
-  "pageNotFoundButton": "Go to homepage"
+  "pageNotFoundButton": "Go to homepage",
+  "authorTitle": "Author:",
+  "articlesBy": "Articles by:",
+  "by": "By",
+  "categoryTitle": "Category:",
+  "uncategorized": "Uncategorized"
 }

@@ -68,7 +68,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
   }, []);
   return (
     <div
-      className={`${isHome ? "pt-[86px]" : "pt-[200px]"
+      className={`${isHome ? "pt-[86px]" : "pt-[150px]"
         } px-5 sm:px-8 lg:px-12 xl:px-0 pb-20`}
     >
 
@@ -76,7 +76,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
 
         {/* Title */}
         <div className="flex justify-center pb-5">
-          <h2 className="service-title text-[48px] font-semibold">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
             <span>{t("development")}</span>
           </h2>
         </div>
@@ -132,7 +132,7 @@ const DevelopmentsPage = ({ isHome = false }) => {
               {sliderData.map((development) => (
                 <SwiperSlide
                   key={development.id}
-                  className="!flex justify-center pb-6 mt-[15px]"
+                  className="!flex justify-center pb-10 mt-[15px]"
                 >
                   <div className="w-full max-w-[532px] lg:max-w-[380px] mx-auto px-[15px] lg:px-0">
                     <DevelopmentCard development={development} />

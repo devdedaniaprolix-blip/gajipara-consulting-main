@@ -102,7 +102,12 @@ const BlogDetails = () => {
             {!blog.categorized && (
               <>
                 <span className="text-gray-300">›</span>
-                <span className="text-(--orange)">Uncategorized</span>
+                <Link
+                  to={`${localePrefix}/category/uncategorized`}
+                  className="text-(--orange) hover:text-(--white) transition-colors"
+                >
+                  Uncategorized
+                </Link>
               </>
             )}
 
@@ -131,7 +136,12 @@ const BlogDetails = () => {
               {/* CATEGORY */}
               {!blog.categorized && (
                 <p className="mb-4 pt-2 pr-3 pb-2 pl-0 text-[14px] font-medium uppercase text-(--orange) font-title">
-                  Uncategorized
+                  <Link
+                    to={`${localePrefix}/category/uncategorized`}
+                    className="hover:underline transition"
+                  >
+                    Uncategorized
+                  </Link>
                 </p>
               )}
 
@@ -153,7 +163,9 @@ const BlogDetails = () => {
                     />
                   </svg>
 
-                  <span className="text-[#3c3c3c] text-[14px]">By gsupperadmin</span>
+                  <span className="text-[#3c3c3c] text-[14px]">
+                    <Link to={`${localePrefix}/author/gajipara-admin`} className="hover:text-(--orange) transition-colors font-medium">By Gajipara Consulting</Link>
+                  </span>
                 </div>
 
                 <div className="flex items-center gap-2 text-[#3c3c3c]">
@@ -180,7 +192,7 @@ const BlogDetails = () => {
               <hr className="border-0 border-t border-[#D6D6D6] mt-5 mb-6" />
 
               {/* DESCRIPTION */}
-              <p className="p-2.5 text-[17px] leading-8 text-(--global-txt-color) font-desc">
+              <p className="p-2.5 text-[17px] leading-8 text-(--e-global-color-text) font-desc">
                 {blog.description}
               </p>
             </div>

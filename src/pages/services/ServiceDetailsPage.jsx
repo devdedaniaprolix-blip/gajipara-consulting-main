@@ -71,7 +71,7 @@ const ServiceDetailsPage = () => {
       <div className="mx-auto w-full max-w-[562px] px-[15px] lg:max-w-[1200px] lg:px-8">
 
         <div className="flex justify-center mb-10">
-          <h2 className="service-title text-[48px] font-semibold text-center">
+          <h2 className="service-title text-[40px] lg:text-[48px] font-semibold text-center">
             <span>{pageHeading}</span>
           </h2>
         </div>
@@ -82,7 +82,7 @@ const ServiceDetailsPage = () => {
               <img
                 src={imageUrl}
                 alt={title}
-                className="h-[200px] w-full rounded-[28px] object-cover sm:h-[250px] md:h-[320px] lg:h-[500px] lg:rounded-3xl lg:shadow-md"
+                className="h-[200px] w-full rounded-[28px] object-cover sm:h-[250px] md:h-[250px] lg:h-[500px] lg:rounded-3xl lg:shadow-md"
               />
             </div>
           )}
@@ -110,7 +110,7 @@ const ServiceDetailsPage = () => {
                       {offers.map((item) => (
                         <li key={item.id} className="flex items-start gap-3">
                           <span className="mt-2 h-2.5 w-2.5 rounded-full bg-gray-700 shrink-0"></span>
-                          <span className="font-desc text-[15px] sm:text-base lg:text-lg leading-7">
+                          <span className="font-desc text-[15px] sm:text-base lg:text-lg leading-7 text-(--e-global-color-text)">
                             {item.lists}
                           </span>
                         </li>

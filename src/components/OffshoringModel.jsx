@@ -40,7 +40,7 @@ const OffshoringModel = () => {
           <div className="p-3.5">
             {/* Heading */}
             <div className="flex justify-left mb-5">
-              <h2 className="service-title text-[48px] font-semibold">
+              <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
                 <span>{t("offshoringTitle")}</span>
               </h2>
             </div>

@@ -49,7 +49,7 @@ const DataProtection = () => {
         <section className="mx-auto w-full max-w-[562px] px-[15px] pt-[150px] pb-[80px] lg:max-w-[1200px]">
             {/* Page Title */}
             <div className="flex p-[10px] justify-center mb-5">
-                <h2 className="service-title text-[48px] font-semibold">
+                <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
                     <span>{pageTitle}</span>
                 </h2>
             </div>
@@ -67,15 +67,15 @@ const DataProtection = () => {
                     >
                         {item.title && (
                             <>
-                                <div className="mt-0 mb-5 text-[25px] font-bold text-[#DE7731] font-title">
+                                <div className="mt-0 mb-[13px] text-[26px] font-semibold text-[#DE7731] font-title">
                                     {item.title}
                                 </div>
 
-                                <div className="h-px w-full bg-gray-300"></div>
+                                <div className="h-px w-full bg-[#D6D6D6] mb-[10px]"></div>
                             </>
                         )}
                         <div
-                            className="address-content text-[#4B4B4B]"
+                            className="data-protection text-[#4B4B4B]"
                             dangerouslySetInnerHTML={{
                                 __html: extractBody(html),
                             }}

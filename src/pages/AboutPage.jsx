@@ -71,7 +71,7 @@ const AboutPage = () => {
         <div className="w-full max-w-[620px] lg:max-w-none lg:w-1/2 text-left px-[15px] mt-8 lg:mt-0 mx-auto">
 
           <div className="flex justify-left mb-5">
-            <h2 className="service-title text-[48px] font-semibold">
+            <h2 className="service-title text-[40px] lg:text-[48px] font-semibold">
               <span>{locale === "en" ? "About Us" : "Über Uns"}</span>
             </h2>
           </div>
