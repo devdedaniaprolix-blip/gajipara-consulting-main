@@ -119,7 +119,7 @@ const AuthorBlogs = () => {
 
       {/* CONTENT */}
       <section className="w-full pb-20">
-        <div className="mx-auto max-w-[1198px]">
+        <div className="mx-auto max-w-[1198px] xl:px-0 px-8">
           <div className="mx-auto">
             {blogs.length === 0 ? (
               <div className="text-center py-10 text-gray-500 font-desc">
