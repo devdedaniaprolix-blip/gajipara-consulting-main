@@ -67,7 +67,7 @@ const DataProtection = () => {
                     >
                         {item.title && (
                             <>
-                                <div className="mt-0 mb-5 text-[25px] font-bold text-[#DE7731] font-title">
+                                <div className="mt-0 mb-5 text-[26px] font-semibold text-[#DE7731] font-title">
                                     {item.title}
                                 </div>
 
