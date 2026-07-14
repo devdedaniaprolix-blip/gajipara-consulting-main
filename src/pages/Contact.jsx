@@ -292,9 +292,7 @@ const Contact = () => {
                         {routeLocale === "en" ? "E-Mail" : "E-Mail"}
                       </div>
                       <div className="text-[#3C3C3C] text-[16px] leading-snug">
-                        <a
-                          href="mailto:{}"
-                          href={`tel:${about.email}`}
+                        <a href={`tel:${about.email}`}
                           className="hover:text-[#DE7731] transition-colors"
                         >
                           {about.email}
